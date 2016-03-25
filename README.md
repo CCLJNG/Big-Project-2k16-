@@ -1,2 +1,2 @@
 # Big-Project-2k16-
-Projet final (Hortense, Flora, Cécilia) - Jeu de séduction
+Projet final (Queen Hortense,Princess Flora, Princess Cécilia) - Jeu de séduction
