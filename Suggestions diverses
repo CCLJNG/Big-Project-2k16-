@@ -15,3 +15,97 @@ Ses choix influeront des jauges d'affection et déclencheront ou non certains é
 D'autres évènements seront provoqués quand les barres d'affection dépasseront certains seuils 
 Genre faudrait faire un arbre avec les différents embranchements du scénario 
 Mais d'abord, il faudrait faire un scénario tout court. 
+
+
+[Cécilia] WARNING GROS BROUILLONNNNNNNNNNNNNNNNNNN QUI EST SEULEMENT DESTINE A ETRE LU PAR MOI MEME
+#####################################################################################################
+
+Sinon on peut faire l'inverse, c'est-à-dire qu'il y ait deux filles à séduire.
+Par contre j'ai du mal à imaginer une fin où les deux filles finissent ensemble puisque qu'elles ne sont pas interactions entre elles.
+
+Evidemment, il n'y aura pas que des happy-endings, cela dépendra du parcours effectué °-°
+Les deux filles qu'on pourrait mettre en scène seraient :
+ (à revoir, bc je sais vmt pas quoi mettre comme profil pour les filles )
+    - La jeune fille maladroite, qui rigole aux éclats, trèèès fleur-bleue [Humour]
+    - La jeune fille studieuse, assez réservée et timide. [Intelligence]
+    
+Au niveau de l'environnement je verrais bien une map avec plusieurs bâtiments :
+    - La maison ( ou plutôt la chambre ) du perso principal, où il pourra dormir et récupérer son énergie.
+    - Restaurant : pour s'y restaurer, pour des rendez-vous galants [#Romantique]
+        - un fast food, pas très coûteux
+        - un restau chic, plus coûteux
+    - Parc : pour un rendez-vous galant, un pique-nique...
+    - Bibliothèque : pour se cultiver (++Intelligence++)
+    - Concert : lieu de rendez-vous
+    - Centre-commercial :
+        - Magasin de jouets/peluches : on peut acheter des nounours, des lapins ( tqtttt )
+        - Magasin de joaillerie : bague de fiançaille ( ET OUI )
+        - Fleuriste : pour acheter des fleurs (#Romantique)
+        - Salle de sport : pour s'entretir, être plus beau (++ Beauté/ Charme ++)
+        - Salle d'arcade : beaucoup de monde, lieu de divertissement 
+    - Lieu de travail : pour gagner de l'argent
+    - Cinéma : lieu de rendez-vous 
+    - Musée : lieu de rendez-vous
+    
+J'ai pensé à d'autres choses mais je crois qu'on va simplifier le truc sinon on ne pourra pas terminer le jeu.
+
+Au début du genre, le joueur entre un nickname, puis il doit répartir 6 points dans les 3 domaines suivants :
+- Humour;
+- Interlligence;
+- Beauté/Charme; 
+
+Le maximum de point pour chaque domaine sera de 10 points pour raccourcir le jeu.
+
+Le pp ( perso principal ) aura une barre d'énergie de 100 au maximum, toutes ses actions lui coûteront de l'énergie.
+Exemple : parler à une fille -5 pts d'énergie
+          aller s'instruire à l'école - 25 pts d'énergie
+          travailler : -35 pts d'énergie
+Pour restaurer la barre d'énergie, le pp devra alors dormir chez lui -.-.) 
+
+Le pp aura la possibilité de travailler, pour avoir de l'argent.
+Oui mais pourquoi?
+- afin de payer les restaurants ( si jamais il part en rendez-vous )
+- acheter des cadeaux dans le mall pour les offrir...
+
+RELATIONS:
+Jauge d'affection pour chaque fille.
+Au début => 0
+Titre par pallier, exemple
+0->5 : Inconnu
+-> 15 : Connaissance
+-> 30 : Camarade
+-> 50 : Ami
+-> 85 : Meilleur ami
+-> 100 : ♥
+
+Lors des discussions, les réponses choisies par le pp modifiera la jauge d'affection, par ex:
+Imaginons que le pp parle à la fille_1 au stade Inconnu (avec 3 en jauge d'affec) et qu'il lâche une blague pas marrante 
+( ah oui on pourra mettre plein de blagues pas drôle hehehhe ), bah il fera un bide complet et perdra -1 humour, -2 en jauge
+
+BREF
+après c'est méga le bordel parce que
+le niveau de l'humour du pp va augmenter les chances que la fille prenne bien la blague etc
+une blague bien prise = +++++++ au niveau de la jauge d'affection ....
+Selon le niveau de relation, les phrases de loveur peuvent :
+déplaire et donc -------- jauge d'affec
+être bien pris donc ++++++ jauge d'affec
+La fille fleur-bleue a plus de chances de bien prendre les phrases de loveur car elle et le romantisme = ♥♥♥
+
+Le pp peut soit
+-parler avec la fille
+-demander quelque chose ( sur ses goûts personnels par exemple, ou bien pour une proposition d'un rdv galant )
+-l'insulter ( HAHA )
+-lui demander de sortir avec (à ne faire que lorsque le pp aura atteint le pallier max, sinon il perdra beauuucoup de pts )
+........
+
+
+Le dimanche, l'école doit être fermé 
+Lorsque le joueur aura terminé le jeu, il faudra qu'on affiche le nombre de jours qu'il lui a fallu pour séduire une fille
+Il faudra eventuellement un système de sauvegarde mais ça ... je n'ai aucune idée de comment le faire 
+et au pire, on raccourcira tout le jeu
+
+Chaque fille aura des goûts particuliers etc,
+ex : une fille_x aimera les peluches ( le pp peut alors lui offrir des peluches pour avoir un ++++ dans sa jauge, mais attention : il
+doit avoir une bonne relation au préalable avec la fille )
+
+CECI ETAIT DU GROS BROUILLON, ce sont juste mes notes voili voilou
