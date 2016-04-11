@@ -1,62 +1,71 @@
+# -*- coding: utf-8 -*-
 """
-Interface Graphique / Cécilia 
-"""
+Created on Mon Apr 11 11:29:07 2016
 
+BIG PROJECT
+
+INTERFACE GRAPHIQUE
+
+
+"""
 
 import tkinter as tk
 from tkinter import ttk
 
+def menu_1():
+    def clicked():
+        if len(nom.get()) == 0 or len(mdp.get()) < 5:
+             message = "Veuillez vérifier que vous avez bien mis un nom"
+             message2 = "et que votre mot de passe contient plus de 4 caractères!"
+        else:
+             message = nom.get() + ", votre mot de passe est: " + mdp.get()
+             message2 = " A bientôt! "
+             validation.config(state='disabled')
 
-# Liste des fonctions
-def clicked():
-     
-    if len(nom.get()) == 0 or len(mdp.get()) < 5:
-        message = "Veuillez vérifier que vous avez bien mis un nom"
-        message2 = "et que votre mot de passe contient plus de 4 caractères!"
-    else:
-        message = nom.get() + ", votre mot de passe est: " + mdp.get()
-        message2 = " A bientôt! "
-        validation.config(state='disabled')
-
-    reponse.config(text=message)
-    reponse.config(foreground='red')
-    reponse2.config(text=message2)
-    reponse2.config(foreground='red')
+        reponse.config(text=message)
+        reponse.config(foreground='red')
+        reponse2.config(text=message2)
+        reponse2.config(foreground='red')
 
 
 # Application
-win = tk.Tk() #création de la fenêtre
-win.title("Doki Doki highschool")
-win.geometry("400x150+750+400") #size
-mycolor = '#CCE5FF'
-win.configure(bg=(mycolor)) #couleur fond
-win.resizable(False, False)
-
+    win = tk.Tk() #création de la fenêtre
+    win.title("Doki Doki highschool")
+    win.geometry("400x150+750+400") #size
+    mycolor = '#CCE5FF'
+    win.configure(bg=(mycolor)) #couleur fond
+    win.resizable(False, False)
+    
 # Créations des labels
-ttk.Label(win, text="Identifiant").grid(row=0, column=0, pady=5, sticky=tk.W)
-ttk.Label(win, text="Mot de passe").grid(row=2, column=0, pady=5, sticky=tk.W)
+    ttk.Label(win, text="Identifiant").grid(row=0, column=0, pady=5, sticky=tk.W)
+    ttk.Label(win, text="Mot de passe").grid(row=2, column=0, pady=5, sticky=tk.W)
 
 #Création des réponses
-reponse = ttk.Label(win, text="")
-reponse2 = ttk.Label(win, text="")
-reponse.grid(row=0, column=2, pady=5, sticky=tk.W)
-reponse2.grid(row=1,column=2, pady=5, sticky=tk.W)
+    reponse = ttk.Label(win, text="")
+    reponse2 = ttk.Label(win, text="")
+    reponse.grid(row=0, column=2, pady=5, sticky=tk.W)
+    reponse2.grid(row=1,column=2, pady=5, sticky=tk.W)
 
 # Champs où l'user va écrire
-nom_var = tk.StringVar
-nom = ttk.Entry(win, width=12, textvariable=nom_var)
-nom.grid(row=1, column=0, pady=2)
-nom.focus()
+    nom_var = tk.StringVar
+    nom = ttk.Entry(win, width=12, textvariable=nom_var)
+    nom.grid(row=1, column=0, pady=2)
+    nom.focus()
 
-mdp_var = tk.StringVar
-mdp = ttk.Entry(win, width=15, textvariable=mdp_var)
-mdp.grid(row=3, column=0, pady=2)
-mdp.focus()
+    mdp_var = tk.StringVar
+    mdp = ttk.Entry(win, width=15, textvariable=mdp_var)
+    mdp.grid(row=3, column=0, pady=2)
+    mdp.focus()
+    
 
+    validation = ttk.Button(win, text="Valider", command=clicked)
+    validation.grid(row=4, column=0, padx=2)
 
-validation = ttk.Button(win, text="Valider", command=clicked)
-validation.grid(row=4, column=0, padx=2)
+    win.mainloop()
 
+    
+def main():
+    menu_1()
 
-
-win.mainloop()
+        
+main()
