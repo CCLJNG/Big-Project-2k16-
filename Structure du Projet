@@ -1,0 +1,38 @@
+Nom temporaire : Doki Doki Highschool ♥ 
+
+3 filles à séduire:
+  - Maya, la fille "bizarre", "cheloue" # Hortense
+  - Alice, la fille timide, réservée # Flora 
+  - Clover, la bimbo de la classe, la séductrice # Cécilia
+  
+Temps : 5 minutes le matin, 5 minutes l'après midi
+(Si matin réussi -> possibilité de déjeuner avec une fille)
+
+Fin après-midi : si love_bar assez haute, possibilité de proposer une sortie de type cinéma à une fille
+= success
+
+Jauge d'affection :
+love_bar = plus la fille sera séduite, plus la jauge augmentera,
+lorsque la jauge atteindra son quota maximal alors elle sera "amoureuse" et le garçon pourra lui proposer une sortie (=réussite)
+
+Comment séduire une fille?
+Pour que la love_bar augmente il faut que le garçon choisisse les bonnes actions à faire selon le type de fille qu'il a choisi de séduire.
+En revanche, s'il répond mal, et qu'il offense la fille, la love_bar de cette fille diminuera.
+
+Comment bien choisir les réponses?
+Il faut voir selon le type de fille qu'il séduit. Par exemple, il ne faudrait pas qu'il fasse du rentre-dedans trop direct avec Alice
+la fille timide car cela risquerait de la brusquer et donc faire baisser sa love_bar en conséquence.
+
+
+##### INTERFACE GRAPHIQUE
+Menu :
+' Jouer '
+' Tutoriel '
+
+Si 'Jouer' -> on demande à l'utilisateur son prénom [ ..... ]
+Si 'Tutoriel' -> un garçon lambda arrive et lui présente la salle de classe (où tout se déroulera) en établissant le portrait des 3 filles
+Il explique le principe de la love_bar
+
+( si possible, mettre une musique de fond)
+
+
