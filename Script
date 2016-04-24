@@ -75,21 +75,21 @@ DD - • C'est le but Alice :)                    # Jauge + 25
 
 Alice - Ah ! Petit coquin.
 
-DD - •
-     •
-     •
+DD - • Merde, il y a un truc qui cloche avec mon téléphone.. Il manque ton numéro dedans # Jauge + 50
+     • C'est quoi ton numéro ?                                                           # Jauge + 25
+     • Oh, je dois y aller on continue par sms?                                          # Jauge - 25
 
-Alice -
+Alice - Désolé, je n'ai pas encore de portable.
 
-DD - •
-     •
-     •
+DD - • C'est pas grave.                                       # Jauge + 0
+     • C'était juste pour que tu m"aides à trouver un cadeau  # Jauge + 25
+     • A ton âge tu n'as toujours pas de portable !           # Jauge - 50
 
-Alice -
+Alice - D'accord
 
-DD - •
-     •
-     •
+DD - • Du coup, ça te dirait de sortir faire un tour    # Jauge + 25
+     • On se revoit prochainement?                      # Jauge + 50
+     • Au revoir                                        # Jauge - 25
 
 ------------------------------------------------------------------------------------
 
@@ -116,25 +116,25 @@ Clover - Haha ! T'as un sens d'humour unique qu'aucun de mes ex avaient. Sinon t
 
 DD - • Ici la voix. Viens m'embrasser, en mode Secret story      # Jauge + 50
      • You know french kiss ?                                    # Jauge + 25
-     • Je peux t'embrasser ?                                     # Jauge - 25
+     • Embrasse moi si j’ai tord ! On s’est déjà rencontré, non? # Jauge - 25
 
-Clover - Je suis choquée ! En étant un adolescant tu es encore naif
+Clover - Je suis choquée ! En étant un homme tu es encore naif !
 
-DD - • Je sais, jouer la naïveté est la meilleure technique de drague ;)
-     • 
-     • La naïveté est dorénavant le visage de la vérité.
+DD - • Je sais, jouer la naïveté est la meilleure technique de drague ;) # Jauge - 25
+     • Si tu le dis !                                                    # Jauge + 25
+     • La naïveté est dorénavant le visage de la vérité.                 # Jauge + 50 
 
 Clover - Bon attends, je voulais te dire que tu es mignon.
 
-DD - • ALLEZ ! 1 - 0 
-     • Attends, c'est toi qui me dragues ou l'inverses?
-     • 
+DD - • ALLEZ ! 1 - 0                                      # Jauge + 25
+     • Attends, c'est toi qui me dragues ou l'inverses?   # Jauge - 25
+     • Venant de toi, c'est un compliment ?               # Jauge - 50
 
-Clover - 
+Clover - Maais oui voyons !
 
-DD - •
-     •
-     •
+DD - • Sinon, ça te dis d'aller boire un p'tit verre?     # Jauge + 50
+     • J'ai l'air d'un clown ?                            # Jauge + 25
+     • Ok                                                 # Jauge - 25
 
 
 ------------------------------------------------------------------------------------
