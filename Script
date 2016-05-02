@@ -14,13 +14,13 @@ DD - Yo, je suis asphyxiophile, ça te branche ? Quoi, tu ne connais pas l'asphy
 Maya - Mais bien sur que si je connais ! C'est une maladie où tu parles trop. C'est ça ?
 
 DD - • Exactement, t'as tout compris :)                         # Jauge + 25
-     • Tu possèdes une intelligence inouie                      # Jauge + 50
-     • LOL ! Ca veut rien dire mais bon tu es splendide         # Jauge 0
+     • Tu possèdes une intelligence inouie !                   # Jauge + 50
+     • LOL ! Ca veut rien dire mais bon tu es splendide ^^      # Jauge 0
 
 Maya - Haha ! T'as un bon sens de l'humour toi.
 
 DD - Oui, on me le dit souvent.
-     • Bref ! Mon ex m'a quittée & je suis à la recherche d'une nouvelle meuf   # Jauge + 25
+     • Bref ! Mon ex m'a quitté et je suis à la recherche d'une nouvelle meuf !  # Jauge + 25
      • Tu es sur la liste de mes choses à faire.                                # Jauge - 25 (Si la jauge est à 0 elle reste à 0)
      • Avec ton Q.I. et ton corps, on pourrait faire des enfants incroyables.   # Jauge + 50
 
@@ -28,13 +28,13 @@ Maya - Oh mec ! T'y vas direct au but toi.
 
 DD - • Tu m'as mal compris !          # Jauge + 50
      • J'insinue rien par là.         # Jauge 0
-     • Héhé... Normal, c'est moi      # Jauge + 25
+     • Héhé... Normal, c'est moi !      # Jauge + 25
 
 Maya - T'as raison, l'asphyxiophile c'est pas le fait de parler trop mais c'est le fait d'être bête !
 
 DD - Maaaais je te taquine voyons!
      • Tes dents sont comme des étoiles... Toutes jaunes et écartées. Je ne peux vivre sans toi.                              # Jauge - 25
-     • Mourrir simplement me serait difficile mais mourrir pour toi me serait une joie éternelle.                             # Jauge + 25
+     • Mourir simplement me serait difficile mais mourir pour toi me serait une joie éternelle.                             # Jauge + 25
      • Je t'aime et si on devait me donner une pièce d'un centime à chaque fois que je pense à toi, je serais milliardaire !  # Jauge + 50
 
 Maya - Ohhh enfait, tu n'es point un diable. T'es sur le point de me voler mon coeur.
@@ -55,19 +55,19 @@ DD - • Mais qu'est ce que c'est?     # Jauge + 0
 ----------------------------  MISSION DE SEDUCTION ALICE ---------------------------
 DD - Hey ! Sympa ton sac, je cherche un cadeau pour ma petite soeur et c'est exactement le genre de trucs qu'elle aime. T'aurais pas une idée à me proposer?
 
-Alice - Euh.. si ! Si t'as soeur aime les sacs, tu peux lui acheter un sac. Le mien, je l'ai acheté à la galerie Lafayette.
+Alice - Euh.. si ! Si ta soeur aime les sacs, tu peux lui acheter un sac. Le mien, je l'ai acheté à la galerie Lafayette.
 
-DD - • Il s'avère que ce n'est pas de mon budget        # Jauge + 25
-     • Excellente idée, j'irai voir après les cours     # Jauge + 50
-     • T'aurais pu trouver une meilleure idée           # Jauge 0
+DD - • Il s'avère que ce n'est pas de mon budget.        # Jauge + 25
+     • Excellente idée, j'irais voir après les cours !     # Jauge + 50
+     • T'aurais pu trouver une meilleure idée !          # Jauge 0
 
 Alice - D'accord.
 
-DD - • Si seulement tu savais que je viens de faire la chose la plus difficile de ma vie : Parler à un ange  # Jauge + 50
-     • T'es tellement bonne que même un aveugle te repère à 3 kilomètres                                     # Jauge - 25
+DD - • Si seulement tu savais que je viens de faire la chose la plus difficile de ma vie : Parler à un ange ♥  # Jauge + 50
+     • T'es tellement bonne que même un aveugle te repère à 3 kilomètres !                                    # Jauge - 25
      • Quand je te regarde et quand je regarde les autres filles, c'est toi la plus belle ❤                  # Jauge + 25
 
-Alice - Mais.. Mais tu me fais rougir là.
+Alice - Mais.. Mais tu me fais rougir là >///<
 
 DD - • C'est le but Alice :)                    # Jauge + 25
      • Oh excuse-moi !                          # Jauge + 50
@@ -75,21 +75,21 @@ DD - • C'est le but Alice :)                    # Jauge + 25
 
 Alice - Ah ! Petit coquin.
 
-DD - • Merde, il y a un truc qui cloche avec mon téléphone.. Il manque ton numéro dedans # Jauge + 50
+DD - • Merde, il y a un truc qui cloche avec mon téléphone.. Il manque ton numéro dedans ! # Jauge + 50
      • C'est quoi ton numéro ?                                                           # Jauge + 25
-     • Oh, je dois y aller on continue par sms?                                          # Jauge - 25
+     • Oh, je dois y aller; on continue par sms?                                          # Jauge - 25
 
-Alice - Désolé, je n'ai pas encore de portable.
+Alice - Désolée, je n'ai pas encore de portable.
 
 DD - • C'est pas grave.                                       # Jauge + 0
-     • C'était juste pour que tu m"aides à trouver un cadeau  # Jauge + 25
+     • C'était juste pour que tu m"aides à trouver un cadeau.  # Jauge + 25
      • A ton âge tu n'as toujours pas de portable !           # Jauge - 50
 
 Alice - D'accord
 
-DD - • Du coup, ça te dirait de sortir faire un tour    # Jauge + 25
+DD - • Du coup, ça te dirait de sortir faire un tour  ?  # Jauge + 25
      • On se revoit prochainement?                      # Jauge + 50
-     • Au revoir                                        # Jauge - 25
+     • Au revoir.                                        # Jauge - 25
 
 ------------------------------------------------------------------------------------
 
@@ -103,20 +103,20 @@ Clover - Haha ! Tu passes pas par dix mille chemins.
 
 DD - • J'aimerais être celui qui se reflète tous les jours dans ces yeux sublimes!                                                      # Jauge + 25
      • Je veux vivre dans un pays où ses frontières sont tes bras, son soleil tes sentiments, ses habitants sont Toi Et Moi.             # Jauge 0
-     • Les rencontres sont nombreures. Mais,le hasard de t'avoir croisé est unique. Je veux que cette spécialité grandisse avec toi.    # Jauge + 50
+     • Les rencontres sont nombreuses. Mais, le hasard de t'avoir croisé est unique. Je veux que cette spécialité grandisse avec toi.    # Jauge + 50
 
-Clover - Oulalala ! Ca se voit que tu es en L, vaut mieux que t'ailles séduire une fille cheloue !
+Clover - Oulalala ! Ca se voit que tu es en L, vaut mieux que t'ailles séduire une meuf cheloue !
 
 DD - Voilà, à chaque fois que j'essaye de séduire une fille j'y arrive pas.
      • Pour faire concis, j'ai envie de te gérer.                                 # Jauge + 50
-     • T'aurais pas des plans à me donner pour sortir avec toi                    # Jauge - 25
+     • T'aurais pas des plans à me donner pour sortir avec toi ?                   # Jauge - 25
      • Je peux te séduire ?                                                       # Jauge + 25
 
-Clover - Haha ! T'as un sens d'humour unique qu'aucun de mes ex avaient. Sinon tu fais comment pour qu'une fille t'embrasse?
+Clover - Haha ! T'as un sens d'humour unique qu'aucun de mes ex n'avait. Sinon tu fais comment pour qu'une fille t'embrasse?
 
-DD - • Ici la voix. Viens m'embrasser, en mode Secret story      # Jauge + 50
+DD - • Ici la voix. Viens m'embrasser, en mode Secret story.      # Jauge + 50
      • You know french kiss ?                                    # Jauge + 25
-     • Embrasse moi si j’ai tord ! On s’est déjà rencontré, non? # Jauge - 25
+     • Embrasse moi si j’ai tort ! On s’est déjà rencontré, non? # Jauge - 25
 
 Clover - Je suis choquée ! En étant un homme tu es encore naif !
 
@@ -134,7 +134,7 @@ Clover - Maais oui voyons !
 
 DD - • Sinon, ça te dis d'aller boire un p'tit verre?     # Jauge + 50
      • J'ai l'air d'un clown ?                            # Jauge + 25
-     • Ok                                                 # Jauge - 25
+     • Ok.                                                 # Jauge - 25
 
 
 ------------------------------------------------------------------------------------
