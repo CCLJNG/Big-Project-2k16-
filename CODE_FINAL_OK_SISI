@@ -20,12 +20,29 @@ def effet_choix(n, lovejauge):
     elif n == 2 and lovejauge > 0:
         lovejauge -= 25
     return lovejauge
+
+def image_lovejauge(lovejauge):
+    if lovejauge == 0:
+        lovepic = pygame.image.load("lovejauge_0").convert.alpha()
+    elif lovejauge == 25:
+        lovepic = pygame.image.load("lovejauge_25").convert.alpha()
+    elif lovejauge == 50:
+        lovepic = pygame.image.load("lovejauge_50").convert.alpha()
+    elif lovejauge == 75:
+        lovepic = pygame.image.load("lovejauge_75").convert.alpha()
+    else:
+        lovepic = pygame.image.load("lovejauge_100").convert.alpha()
+        
+    return lovepic
     
-def choix(n_event, lovejauge): #CA CEST LA MACHINE A SMOOTHIE OK 
+    
+def choix(n_event, lovejauge, girl_pic, fenetre): #CA CEST LA MACHINE A SMOOTHIE OK 
 
     #girl est le nom de la meuf a pécho
     #n_event est le numero du dialogue 
-
+    fenetre.blit(n_event[0], (0,0))
+    if pygame.event.type == pygame.MOUSEBUTTONDOWN and pygame.event.button == 1 and 380 < pygame.event.pos[1] < 480 and 540 < pygame.event.pos[0] < 640: #c'est le bouton coeur pour avancer dans le dialogue
+        fenetre.blit(n_event[4], (0,0))
     if pygame.event.type == pygame.MOUSEBUTTONDOWN and pygame.event.button == 1 and 50 < pygame.event.pos[1] < 100 and 50 < pygame.event.pos[0] < 430:
         lovejauge = effet_choix(n_event[1], lovejauge)
     elif pygame.event.type == pygame.MOUSEBUTTONDOWN and pygame.event.button == 1 and 150 < pygame.event.pos[1] < 200 and 50 < pygame.event.pos[0] < 430:
@@ -53,20 +70,20 @@ def main():
     fond = pygame.image.load("fond_classe.png").convert()
     fenetre.blit(fond, (0,0))
 
-    #Chargement et collage du personnage
-    perso = pygame.image.load("clover_happy.png").convert.alpha()
-    fenetre.blit(perso, (200,300))
+
 
     #Rafraîchissement de l'écran
     pygame.display.flip()
 
     #Boucle infinie
-    while continuer:
+    continuer = 1
+    while continuer != 0:
         for event in pygame.event.get():   #On parcours la liste de tous les événements reçus
             if event.type == pygame.QUIT:     #Si un de ces événements est de type QUIT
                 continuer = 0      #On arrête la boucle
             else:
                 if girl == "clover":
+                    girl_pic = pygame.image.load("clover_happy").convert.alpha()
                     pic_1 = pygame.image.load("dialogue_c_1.png").convert.alpha()
                     pic_1_2 = pygame.image.load("choix_c_1.png").convert.alpha()
                     n_event_1 = (pic_1, 1, 2, 0, pic_1_2)
@@ -86,6 +103,7 @@ def main():
                     pic_6_2 = pygame.image.load("choix_c_6.png").convert.alpha()
                     n_event_6 = (pic_6, 0, 1, 2, pic_6_2)
                 elif girl == "maya":
+                    girl_pic = pygame.image.load("maya_happy").convert.alpha()
                     pic_1 = pygame.image.load("dialogue_m_1.png").convert.alpha()
                     pic_1_2 = pygame.image.load("choix_m_1.png").convert.alpha()
                     n_event_1 = (pic_1, 1, 2, 0, pic_1_2)
@@ -105,6 +123,7 @@ def main():
                     pic_6_2 = pygame.image.load("choix_m_6.png").convert.alpha()
                     n_event_6 = (pic_6, 0, 1, 2, pic_6_2)
                 else:
+                    girl_pic = pygame.image.load("alice_happy").convert.alpha()
                     pic_1 = pygame.image.load("dialogue_a_1.png").convert.alpha()
                     pic_1_2 = pygame.image.load("choix_a_1.png").convert.alpha()
                     n_event_1 = (pic_1, 1, 2, 0, pic_1_2)
@@ -126,7 +145,10 @@ def main():
                     
                 lovejauge = 0
                 for i in range(0,6):
-                    # pour les 6 intéractions on appelle la fonction "smoothie"
+                        #Chargement et collage du personnage
+                    perso = pygame.image.load("clover_happy.png").convert.alpha()
+                    fenetre.blit(perso, (0,0))
+                    # pour les 6 interactions on appelle la fonction "smoothie"
                     if i == 0:
                         n_event = n_event_1
                     elif i == 1:
@@ -140,7 +162,9 @@ def main():
                     elif i == 5:
                         n_event = n_event_6
         
-                    lovejauge = choix(n_event, lovejauge) # ca c'est la fonction smoothie
+                    lovejauge = choix(n_event, lovejauge, girl_pic, fenetre) # ca c'est la fonction smoothie
+                    lovepic = image_lovejauge(lovejauge)
+                    fenetre.blit(lovepic(0,0))
                     
 
 main()
