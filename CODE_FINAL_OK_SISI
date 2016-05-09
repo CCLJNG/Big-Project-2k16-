@@ -1,0 +1,147 @@
+import pygame
+#from pygame.local import *
+
+
+#def menu():
+#    pass
+
+def choix_fille():
+    return girl
+        
+def effet_choix(n, lovejauge):
+    #n correspond à l'effet du bouton choisi
+    #lovejauge correspond a la lovejauge de la meuf choisie
+    #Cette fonction fait varier la lovejauge en fonction du choix
+    
+    if n == 0:
+        lovejauge += 0
+    if lovejauge < 100 and n == 1:
+        lovejauge += 25
+    elif n == 2 and lovejauge > 0:
+        lovejauge -= 25
+    return lovejauge
+    
+def choix(n_event, lovejauge): #CA CEST LA MACHINE A SMOOTHIE OK 
+
+    #girl est le nom de la meuf a pécho
+    #n_event est le numero du dialogue 
+
+    if pygame.event.type == pygame.MOUSEBUTTONDOWN and pygame.event.button == 1 and 50 < pygame.event.pos[1] < 100 and 50 < pygame.event.pos[0] < 430:
+        lovejauge = effet_choix(n_event[1], lovejauge)
+    elif pygame.event.type == pygame.MOUSEBUTTONDOWN and pygame.event.button == 1 and 150 < pygame.event.pos[1] < 200 and 50 < pygame.event.pos[0] < 430:
+        lovejauge = effet_choix(n_event[2], lovejauge)
+    elif pygame.event.type == pygame.MOUSEBUTTONDOWN and pygame.event.button == 1 and 250 < pygame.event.pos[1] < 300 and 50 < pygame.event.pos[0] < 430:
+        lovejauge = effet_choix(n_event[3], lovejauge)
+        
+    return lovejauge
+    
+def main():
+    
+    pygame.init()
+    #faudra faire un tuple avec toutes les infos pour chaque dialogue 
+    #genre n_event_c_1 = (image, +25, -25, 0)
+    
+    #Ouverture de la fenêtre Pygame
+    fenetre = pygame.display.set_mode((640, 480))
+    
+    #menu() CA ON VERRA SELON NOTRE TIME
+    
+    
+    girl = choix_fille() # on choisit la fille à séduire
+
+    #Chargement et collage du fond
+    fond = pygame.image.load("fond_classe.png").convert()
+    fenetre.blit(fond, (0,0))
+
+    #Chargement et collage du personnage
+    perso = pygame.image.load("clover_happy.png").convert.alpha()
+    fenetre.blit(perso, (200,300))
+
+    #Rafraîchissement de l'écran
+    pygame.display.flip()
+
+    #Boucle infinie
+    while continuer:
+        for event in pygame.event.get():   #On parcours la liste de tous les événements reçus
+            if event.type == pygame.QUIT:     #Si un de ces événements est de type QUIT
+                continuer = 0      #On arrête la boucle
+            else:
+                if girl == "clover":
+                    pic_1 = pygame.image.load("dialogue_c_1.png").convert.alpha()
+                    pic_1_2 = pygame.image.load("choix_c_1.png").convert.alpha()
+                    n_event_1 = (pic_1, 1, 2, 0, pic_1_2)
+                    pic_2 = pygame.image.load("dialogue_c_2.png").convert.alpha()
+                    pic_2_2 = pygame.image.load("choix_c_2.png").convert.alpha()
+                    n_event_2 = (pic_2, 1, 0, 2, pic_2_2)                    
+                    pic_3 = pygame.image.load("dialogue_c_3.png").convert.alpha()
+                    pic_3_2 = pygame.image.load("choix_c_3.png").convert.alpha()
+                    n_event_3 = (pic_3, 1, 0, 2, pic_3_2)
+                    pic_4 = pygame.image.load("dialogue_c_4.png").convert.alpha()
+                    pic_4_2 = pygame.image.load("choix_c_4.png").convert.alpha()
+                    n_event_4 = (pic_4, 2, 1, 0, pic_4_2)
+                    pic_5 = pygame.image.load("dialogue_c_5.png").convert.alpha()
+                    pic_5_2 = pygame.image.load("choix_c_5.png").convert.alpha()
+                    n_event_5 = (pic_5, 1, 2, 0, pic_5_2)
+                    pic_6 = pygame.image.load("dialogue_c_6.png").convert.alpha()
+                    pic_6_2 = pygame.image.load("choix_c_6.png").convert.alpha()
+                    n_event_6 = (pic_6, 0, 1, 2, pic_6_2)
+                elif girl == "maya":
+                    pic_1 = pygame.image.load("dialogue_m_1.png").convert.alpha()
+                    pic_1_2 = pygame.image.load("choix_m_1.png").convert.alpha()
+                    n_event_1 = (pic_1, 1, 2, 0, pic_1_2)
+                    pic_2 = pygame.image.load("dialogue_m_2.png").convert.alpha()
+                    pic_2_2 = pygame.image.load("choix_m_2.png").convert.alpha()
+                    n_event_2 = (pic_2, 1, 0, 2, pic_2_2)
+                    pic_3 = pygame.image.load("dialogue_m_3.png").convert.alpha()
+                    pic_3_2 = pygame.image.load("choix_m_3.png").convert.alpha()
+                    n_event_3 = (pic_3, 1, 0, 2, pic_3_2)
+                    pic_4 = pygame.image.load("dialogue_m_4.png").convert.alpha()
+                    pic_4_2 = pygame.image.load("choix_m_4.png").convert.alpha()
+                    n_event_4 = (pic_4, 2, 1, 0, pic_4_2)
+                    pic_5 = pygame.image.load("dialogue_m_5.png").convert.alpha()
+                    pic_5_2 = pygame.image.load("choix_m_5.png").convert.alpha()
+                    n_event_5 = (pic_5, 1, 2, 0, pic_5_2)
+                    pic_6 = pygame.image.load("dialogue_m_6.png").convert.alpha()
+                    pic_6_2 = pygame.image.load("choix_m_6.png").convert.alpha()
+                    n_event_6 = (pic_6, 0, 1, 2, pic_6_2)
+                else:
+                    pic_1 = pygame.image.load("dialogue_a_1.png").convert.alpha()
+                    pic_1_2 = pygame.image.load("choix_a_1.png").convert.alpha()
+                    n_event_1 = (pic_1, 1, 2, 0, pic_1_2)
+                    pic_2 = pygame.image.load("dialogue_a_2.png").convert.alpha()
+                    pic_2_2 = pygame.image.load("choix_a_2.png").convert.alpha()
+                    n_event_2 = (pic_2, 1, 0, 2, pic_2_2)
+                    pic_3 = pygame.image.load("dialogue_a_3.png").convert.alpha()
+                    pic_3_2 = pygame.image.load("choix_a_3.png").convert.alpha()
+                    n_event_3 = (pic_3, 1, 0, 2, pic_3_2)
+                    pic_4 = pygame.image.load("dialogue_a_4.png").convert.alpha()
+                    pic_4_2 = pygame.image.load("choix_a_4.png").convert.alpha()
+                    n_event_4 = (pic_4, 2, 1, 0, pic_4_2)
+                    pic_5 = pygame.image.load("dialogue_a_5.png").convert.alpha()
+                    pic_5_2 = pygame.image.load("choix_a_5.png").convert.alpha()
+                    n_event_5 = (pic_5, 1, 2, 0, pic_5_2)
+                    pic_6 = pygame.image.load("dialogue_a_6.png").convert.alpha()
+                    pic_6_2 = pygame.image.load("choix_a_6.png").convert.alpha()
+                    n_event_6 = (pic_6, 0, 1, 2, pic_6_2)
+                    
+                lovejauge = 0
+                for i in range(0,6):
+                    # pour les 6 intéractions on appelle la fonction "smoothie"
+                    if i == 0:
+                        n_event = n_event_1
+                    elif i == 1:
+                        n_event = n_event_2
+                    elif i == 2:
+                        n_event = n_event_3
+                    elif i == 3:
+                        n_event = n_event_4
+                    elif i == 4:
+                        n_event = n_event_5
+                    elif i == 5:
+                        n_event = n_event_6
+        
+                    lovejauge = choix(n_event, lovejauge) # ca c'est la fonction smoothie
+                    
+
+main()
+
