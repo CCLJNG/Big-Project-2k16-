@@ -50,20 +50,27 @@ def choix(n_event, lovejauge, girl_pic, fenetre, test_pic): #CA CEST LA MACHINE 
         #sinon ça continue sans nous parce qu'on est pas en train de cliquer sur un bouton
         
         #fenetre.blit(test_pic, (0,0))
+        choix_affiches = 0
         for event in pygame.event.get():
             if (event.type == pygame.MOUSEBUTTONDOWN) and (event.button == 1) and (380 < event.pos[1] < 480) and (540 < event.pos[0] < 640): #c'est le bouton coeur pour avancer dans le dialogue
                 fenetre.blit(n_event[4], (0,0))
+                choix_affiches = 1
+            while choix_affiches == 1:
                 if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and 50 < event.pos[1] < 100 and 50 < event.pos[0] < 430:
                     lovejauge = effet_choix(n_event[1], lovejauge)
+                    choix_affiches = 0
                 elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and 150 < event.pos[1] < 200 and 50 < event.pos[0] < 430:
                     lovejauge = effet_choix(n_event[2], lovejauge)
+                    choix_affiches = 0
                 elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and 250 < event.pos[1] < 300 and 50 < event.pos[0] < 430:
                     lovejauge = effet_choix(n_event[3], lovejauge)
-                else: 
-                    i = 0
+                    choix_affiches = 0
+                else:
+                    choix_affiches = 1
+            else: 
+                i = 0
 
-
-        
+    pygame.display.flip()    
     return lovejauge
     
 def main():
@@ -166,24 +173,35 @@ def main():
                 lovejaugeactuelle = 0
                 #perso = pygame.image.load(girl_).convert_alpha()
                 fenetre.blit(girl_pic, (0,0))
+                #fenetre.blit(test_pic, (0,0))
                 pygame.display.flip()
-                for i in range(0,6):
+                i = 0
+                while i < 6:
+                #for i in range(0,6):
                     #Chargement et collage du personnage
                     #Pour les 6 interactions on appelle la fonction "smoothie"
                     if i == 0:
                         fenetre.blit(dialogue_mec, (0,0))
                         n_event = n_event_1
+                        
+                        pygame.display.flip()
+                        i += 1
                     elif i == 1:
                         n_event = n_event_2
+                        i += 1
                     elif i == 2:
                         n_event = n_event_3
+                        i += 1
                     elif i == 3:
                         n_event = n_event_4
+                        i += 1
                     elif i == 4:
                         n_event = n_event_5
+                        i += 1
                     elif i == 5:
                         n_event = n_event_6
-                    fenetre.blit(test_pic, (0,0))
+                        i += 1
+
                     lovejauge = choix(n_event, lovejaugeactuelle, girl_pic, fenetre, test_pic) # ca c'est la fonction smoothie
                     lovepic = image_lovejauge(lovejauge)
                     fenetre.blit(lovepic, (0,0))
