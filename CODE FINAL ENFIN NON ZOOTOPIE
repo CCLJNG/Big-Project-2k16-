@@ -1,15 +1,14 @@
 # -*- coding: utf-8 -*-
 """
-Created on Mon May 16 17:15:48 2016
+Created on Sat May 21 16:39:09 2016
 
-@author: Hortense
+@author: user
 """
 
 
-# -*- coding: utf-8 -*-
-import pygame
+import pygame #Importation de notre module principal
 
-#def menu():
+#def menu(): #seulement si on a le temps....
 #    pass
       
 def effet_choix(n_event, lovejauge):
@@ -22,9 +21,10 @@ def effet_choix(n_event, lovejauge):
         lovejauge += 25
     elif n_event == 2 and lovejauge > 0:
         lovejauge -= 25
+        
     return lovejauge
 
-def image_lovejauge(lovejauge):
+def image_lovejauge(lovejauge): #fonction renvoyant une image qui correspond à la valeur de lovejauge
     if lovejauge == 0:
         lovepic = pygame.image.load("lovejauge_0.png").convert_alpha()
     elif lovejauge == 25:
@@ -40,34 +40,49 @@ def image_lovejauge(lovejauge):
     
     
 def choix(n_event, lovejauge, girl_pic, fenetre, test_pic): #CA CEST LA MACHINE A SMOOTHIE OK 
-
-    #girl est le nom de la meuf a pécho
     #n_event est le numero du dialogue 
-    fenetre.blit(n_event[0], (0,0))
+     #on ajoute le dialogue de la fille
     i = 1
     choix_affiches = 0
+    suite = 0
+    continuer = 1
     while i == 1:
-        #sinon ça continue sans nous parce qu'on est pas en train de cliquer sur un bouton
         
+        #sinon ça continue sans nous parce qu'on est pas en train de cliquer sur un bouton        
         #fenetre.blit(test_pic, (0,0))
         #pygame.event.set_allowed(pygame.MOUSEBUTTONDOWN)
         for event in pygame.event.get():            
             while continuer != 0:
+    
                 for event in pygame.event.get():   #On parcours la liste de tous les événements reçus
                     if event.type == pygame.QUIT:     #Si un de ces événements est de type QUIT
                         pygame.quit() # on quitte
                         quit()
                     else:
-                        if ( event.type != pygame.MOUSEBUTTONDOWN ) : #tant qu'on appuie pas, on continue
-                            continue
-            
+                        if (event.type != pygame.MOUSEBUTTONDOWN): #tant qu'on appuie pas, on continue
+                            continue           
                         print("choix_affiches=" , choix_affiches)
                         print(event)
-                        if (event.type == pygame.MOUSEBUTTONDOWN) and (event.button == 1) and (380 < event.pos[1] < 480) and (540 < event.pos[0] < 640): #c'est le bouton coeur pour avancer dans le dialogue
-                            fenetre.blit(n_event[4], (0,0))
-                            choix_affiches = 1
+                        print("suite=", suite)
                         
-                
+                        if suite == 0:
+                            if (event.type == pygame.MOUSEBUTTONDOWN) and (event.button == 1) and (380 < event.pos[1] < 480) and (540 < event.pos[0] < 640): #c'est le bouton coeur pour avancer dans le dialogue
+                                fenetre.blit(n_event[0], (0,0))    
+                                pygame.display.flip()
+                                suite = 1
+                            else:
+                                continue
+
+                        
+                        if suite == 1:
+                            if (event.type == pygame.MOUSEBUTTONDOWN)and (event.button == 1) and (380 < event.pos[1] < 480) and (540 < event.pos[0] < 640):
+                                fenetre.blit(n_event[4], (0,0)) #si on appuie sur "next", l'image avec les choix s'affiche
+                                pygame.display.flip()
+                                choix_affiches = 1 
+                                suite = 2
+                            else:
+                                continue
+                            
                         if choix_affiches == 1:
                             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and 50 < event.pos[1] < 100 and 50 < event.pos[0] < 430:
                                 lovejauge = effet_choix(n_event[1], lovejauge)
@@ -78,7 +93,8 @@ def choix(n_event, lovejauge, girl_pic, fenetre, test_pic): #CA CEST LA MACHINE 
                             elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and 250 < event.pos[1] < 300 and 50 < event.pos[0] < 430:
                                 lovejauge = effet_choix(n_event[3], lovejauge)
                                 i = 0
-                            
+                            else:
+                                continue
 
                         pygame.display.flip() 
 
@@ -87,32 +103,32 @@ def choix(n_event, lovejauge, girl_pic, fenetre, test_pic): #CA CEST LA MACHINE 
     
 def main():
     
-    pygame.init()
-    #faudra faire un tuple avec toutes les infos pour chaque dialogue 
-    #genre n_event_c_1 = (image, +25, -25, 0)
-    
+    pygame.init() #on initialise les modules importés de pygame
+   
     #Ouverture de la fenêtre Pygame
     fenetre = pygame.display.set_mode((640, 480))
+    
+    #menu() CA ON VERRA SELON NOTRE TIME
         
     #girl = choix_fille() # on choisit la fille à séduire
 
     #Chargement et collage du fond
     fond = pygame.image.load("fond_classe.png").convert()
-    fenetre.blit(fond, (0,0))
-    test_pic = pygame.image.load("test.png").convert()
+    fenetre.blit(fond, (0,0)) 
+    test_pic = pygame.image.load("test.png").convert() #à supprimer après
 
-
-    #Rafraîchissement de l'écran
+    #Rafraîchissement de l'écran, essentiel !
     pygame.display.flip()
 
     #Boucle infinie
     continuer = 1
     while continuer != 0:
         for event in pygame.event.get():   #On parcours la liste de tous les événements reçus
-            if event.type == pygame.QUIT:     #Si un de ces événements est de type QUIT
-                continuer = 0      #On arrête la boucle
+            if event.type == pygame.QUIT: 
+                continuer = 0 #Si un de ces événements est de type QUIT
+                #pygame.quit()      #On arrête la boucle
             else:
-                girl = "clover" #temporaire OK ?????? il faudra enlever ça après avoir mis les images des autres meufs c: 
+                girl = "clover" #temporaire 
                 if girl == "clover":
                     girl_pic = pygame.image.load("clover_happy.png").convert_alpha()
                     #on charge le photo de CLOVER
@@ -180,9 +196,9 @@ def main():
                     pic_6_2 = pygame.image.load("choix_a_6.png").convert_alpha()
                     n_event_6 = (pic_6, 0, 1, 2, pic_6_2)
                     
-                lovejaugeactuelle = 0
+                lovejaugeactuelle = 0 #on initialise notre love jauge à 0, normal!
                 #perso = pygame.image.load(girl_).convert_alpha()
-                fenetre.blit(girl_pic, (0,0))
+                fenetre.blit(girl_pic, (0,0)) #on ajoute à la fenetre, l'image de la fille
                 #fenetre.blit(test_pic, (0,0))
                 pygame.display.flip()
                 i = 0
@@ -191,9 +207,8 @@ def main():
                     #Chargement et collage du personnage
                     #Pour les 6 interactions on appelle la fonction "smoothie"
                     if i == 0:
-                        fenetre.blit(dialogue_mec, (0,0))
-                        n_event = n_event_1
-                        
+                        fenetre.blit(dialogue_mec, (0,0)) #tout d'abord, on place le dialogue du garçon
+                        n_event = n_event_1                
                         pygame.display.flip()
                         i += 1
                     elif i == 1:
