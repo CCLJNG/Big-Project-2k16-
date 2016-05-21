@@ -11,18 +11,21 @@ import pygame #Importation de notre module principal
 #def menu(): #seulement si on a le temps....
 #    pass
       
-def effet_choix(n_event, lovejauge):
+def effet_choix(n_event, lovejaugeactuelle):
     #n correspond à l'effet du bouton choisi
     #lovejauge correspond a la lovejauge de la meuf choisie
     #Cette fonction fait varier la lovejauge en fonction du choix
     if n_event == 0:
-        lovejauge += 0
-    if lovejauge < 100 and n_event == 1:
-        lovejauge += 25
-    elif n_event == 2 and lovejauge > 0:
-        lovejauge -= 25
+        lovejaugeactuelle += 0
+    if lovejaugeactuelle < 100 and n_event == 1:
+        lovejaugeactuelle += 25
+    else:
+        if lovejaugeactuelle == 0:
+            lovejaugeactuelle = 0
+        elif lovejaugeactuelle > 0 and lovejaugeactuelle <= 100:
+            lovejaugeactuelle -= 25
         
-    return lovejauge
+    return lovejaugeactuelle #retourne la veleur de lovejaugeactuelle soit, un int
 
 def image_lovejauge(lovejauge): #fonction renvoyant une image qui correspond à la valeur de lovejauge
     if lovejauge == 0:
@@ -39,7 +42,7 @@ def image_lovejauge(lovejauge): #fonction renvoyant une image qui correspond à 
     return lovepic
     
     
-def choix(n_event, lovejauge, girl_pic, fenetre, test_pic): #CA CEST LA MACHINE A SMOOTHIE OK 
+def choix(n_event, lovejaugeactuelle, girl_pic, fenetre, test_pic): #CA CEST LA MACHINE A SMOOTHIE OK 
     #n_event est le numero du dialogue 
      #on ajoute le dialogue de la fille
     i = 1
@@ -64,40 +67,39 @@ def choix(n_event, lovejauge, girl_pic, fenetre, test_pic): #CA CEST LA MACHINE 
                         print("choix_affiches=" , choix_affiches)
                         print(event)
                         print("suite=", suite)
+                        print("lovejaugeactuelle=", lovejaugeactuelle)
                         
-                        if suite == 0:
+                        if suite != 2:
                             if (event.type == pygame.MOUSEBUTTONDOWN) and (event.button == 1) and (380 < event.pos[1] < 480) and (540 < event.pos[0] < 640): #c'est le bouton coeur pour avancer dans le dialogue
                                 fenetre.blit(n_event[0], (0,0))    
                                 pygame.display.flip()
                                 suite = 1
-                            else:
-                                continue
-
-                        
-                        if suite == 1:
-                            if (event.type == pygame.MOUSEBUTTONDOWN)and (event.button == 1) and (380 < event.pos[1] < 480) and (540 < event.pos[0] < 640):
-                                fenetre.blit(n_event[4], (0,0)) #si on appuie sur "next", l'image avec les choix s'affiche
-                                pygame.display.flip()
-                                choix_affiches = 1 
-                                suite = 2
+                                if suite == 1:
+                                    if (event.type == pygame.MOUSEBUTTONDOWN) and (event.button == 1) and (380 < event.pos[1] < 480) and (540 < event.pos[0] < 640):
+                                        fenetre.blit(n_event[4], (0,0)) #si on appuie sur "next", l'image avec les choix s'affiche
+                                        pygame.display.flip()
+                                        choix_affiches = 1 
+                                        suite = 2
+                                    else:
+                                        continue
                             else:
                                 continue
                             
+                            
                         if choix_affiches == 1:
                             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and 50 < event.pos[1] < 100 and 50 < event.pos[0] < 430:
-                                lovejauge = effet_choix(n_event[1], lovejauge)
+                                lovejauge = effet_choix(n_event[1], lovejaugeactuelle)
                                 i = 0
                             elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and 150 < event.pos[1] < 200 and 50 < event.pos[0] < 430:
-                                lovejauge = effet_choix(n_event[2], lovejauge)
+                                lovejauge = effet_choix(n_event[2], lovejaugeactuelle)
                                 i = 0
                             elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and 250 < event.pos[1] < 300 and 50 < event.pos[0] < 430:
-                                lovejauge = effet_choix(n_event[3], lovejauge)
+                                lovejauge = effet_choix(n_event[3], lovejaugeactuelle)
                                 i = 0
                             else:
                                 continue
-
                         pygame.display.flip() 
-
+                    continuer = 0
             
     return lovejauge
     
@@ -228,8 +230,8 @@ def main():
                         i += 1
 
                     lovejauge = choix(n_event, lovejaugeactuelle, girl_pic, fenetre, test_pic) # ca c'est la fonction smoothie
-                    lovepic = image_lovejauge(lovejauge)
-                    fenetre.blit(lovepic, (0,0))
+                    lovepict = image_lovejauge(lovejauge)
+                    fenetre.blit(lovepict, (0,0))
                     pygame.display.flip()
                     
     pygame.display.flip()
