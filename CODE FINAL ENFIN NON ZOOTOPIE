@@ -84,8 +84,6 @@ def main():
     
     #Ouverture de la fenêtre Pygame
     fenetre = pygame.display.set_mode((640, 480))
-    
-    #menu() CA ON VERRA SELON NOTRE TIME
         
     #girl = choix_fille() # on choisit la fille à séduire
 
