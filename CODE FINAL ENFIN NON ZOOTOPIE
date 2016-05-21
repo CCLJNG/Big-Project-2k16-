@@ -51,28 +51,37 @@ def choix(n_event, lovejauge, girl_pic, fenetre, test_pic): #CA CEST LA MACHINE 
         
         #fenetre.blit(test_pic, (0,0))
         #pygame.event.set_allowed(pygame.MOUSEBUTTONDOWN)
-        for event in pygame.event.get():
-            if ( event.type != pygame.MOUSEBUTTONDOWN ) :
-                continue
+        for event in pygame.event.get():            
+            while continuer != 0:
+                for event in pygame.event.get():   #On parcours la liste de tous les événements reçus
+                    if event.type == pygame.QUIT:     #Si un de ces événements est de type QUIT
+                        pygame.quit() # on quitte
+                        quit()
+                    else:
+                        if ( event.type != pygame.MOUSEBUTTONDOWN ) : #tant qu'on appuie pas, on continue
+                            continue
             
-            print("choix_affiches=" , choix_affiches)
-            print(event)
-            if (event.type == pygame.MOUSEBUTTONDOWN) and (event.button == 1) and (380 < event.pos[1] < 480) and (540 < event.pos[0] < 640): #c'est le bouton coeur pour avancer dans le dialogue
-                fenetre.blit(n_event[4], (0,0))
-                choix_affiches = 1
+                        print("choix_affiches=" , choix_affiches)
+                        print(event)
+                        if (event.type == pygame.MOUSEBUTTONDOWN) and (event.button == 1) and (380 < event.pos[1] < 480) and (540 < event.pos[0] < 640): #c'est le bouton coeur pour avancer dans le dialogue
+                            fenetre.blit(n_event[4], (0,0))
+                            choix_affiches = 1
+                        
                 
-            if choix_affiches == 1:
-                if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and 50 < event.pos[1] < 100 and 50 < event.pos[0] < 430:
-                    lovejauge = effet_choix(n_event[1], lovejauge)
-                    i = 0
-                elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and 150 < event.pos[1] < 200 and 50 < event.pos[0] < 430:
-                    lovejauge = effet_choix(n_event[2], lovejauge)
-                    i = 0
-                elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and 250 < event.pos[1] < 300 and 50 < event.pos[0] < 430:
-                    lovejauge = effet_choix(n_event[3], lovejauge)
-                    i = 0
+                        if choix_affiches == 1:
+                            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and 50 < event.pos[1] < 100 and 50 < event.pos[0] < 430:
+                                lovejauge = effet_choix(n_event[1], lovejauge)
+                                i = 0
+                            elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and 150 < event.pos[1] < 200 and 50 < event.pos[0] < 430:
+                                lovejauge = effet_choix(n_event[2], lovejauge)
+                                i = 0
+                            elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and 250 < event.pos[1] < 300 and 50 < event.pos[0] < 430:
+                                lovejauge = effet_choix(n_event[3], lovejauge)
+                                i = 0
+                            
 
-            pygame.display.flip() 
+                        pygame.display.flip() 
+
             
     return lovejauge
     
