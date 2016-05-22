@@ -10,28 +10,31 @@ import pygame #Importation de notre module principal
 #    pass
 
 def fille(choix_fille, girlwtf):
+    """"
+    fonction qui va renvoyer une chaîne de caractère correspondant à la fille
+    qu'on voudra séduire
+    """
+   
     continuer = 1
     
-    for event in pygame.event.get():
-        while continuer != 0:
-            for event in pygame.event.get():   #On parcours la liste de tous les événements reçus
-                    if event.type == pygame.QUIT:     #Si un de ces événements est de type QUIT
-                        pygame.quit() # on quitte
-                        quit()
-                    else:
-                        if (event.type != pygame.MOUSEBUTTONDOWN): #tant qu'on appuie pas, on continue
-                            continue           
-                    if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and 0 < event.pos[1] < 365 and 0 < event.pos[0] <= 213:
-                        girlwtf = "clover"
-                        continuer = 0
-                    elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and 0 < event.pos[1] < 365 and 213 < event.pos[0] < 427:
-                        girlwtf = "maya"
-                        continuer = 0
-                    elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and 0 < event.pos[1] < 365 and 427 <= event.pos[0] < 640:
-                        girlwtf = "alice"
-                        continuer = 0
-                    else:
-                        continue
+    while continuer != 0:
+        for event in pygame.event.get():   #On parcours la liste de tous les événements reçus
+            if event.type == pygame.QUIT:     #Si un de ces événements est de type QUIT
+                pygame.quit() # on désinitialise tous les modules de Pygame
+                quit() # on quitte 
+            else:
+                if (event.type != pygame.MOUSEBUTTONDOWN): #tant qu'on appuie pas, on continue
+                    continue           
+                if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and 0 < event.pos[1] < 365 and 0 < event.pos[0] <= 213:
+                    girlwtf = "clover"
+                    continuer = 0
+                elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and 0 < event.pos[1] < 365 and 213 < event.pos[0] < 427:
+                    girlwtf = "maya"
+                    continuer = 0
+                elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and 0 < event.pos[1] < 365 and 427 <= event.pos[0] < 640:
+                    girlwtf = "alice"
+                    continuer = 0
+
     return girlwtf
       
 def effet_choix(n_event, lovejaugeactuelle):
@@ -139,7 +142,6 @@ def main():
 
     #Chargement et collage du fond
     fond = pygame.image.load("fond_classe.png").convert()
-    fenetre.blit(fond, (0,0))
 
     girlwtf = pygame.image.load("test.png").convert() #à supprimer après
     
@@ -164,6 +166,7 @@ def main():
             else:
                 
                 girl = fille(choix_fille, girlwtf) # on choisit la fille
+                fenetre.blit(fond, (0,0))
                 #girl = "clover" #temporaire 
                 if girl == "clover":
                     girl_pic = pygame.image.load("clover_happy.png").convert_alpha()
