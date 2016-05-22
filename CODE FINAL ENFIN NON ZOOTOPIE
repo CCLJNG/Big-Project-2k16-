@@ -4,12 +4,36 @@ Created on Sat May 21 16:39:09 2016
 
 @author: user
 """
-
-
 import pygame #Importation de notre module principal
 
 #def menu(): #seulement si on a le temps....
 #    pass
+
+def fille(fenetre, choix_fille):
+    continuer = 1
+    fenetre.blit(choix_fille, (0,0))
+    
+    for event in pygame.event.get():
+        while continuer != 0:
+            for event in pygame.event.get():   #On parcours la liste de tous les événements reçus
+                    if event.type == pygame.QUIT:     #Si un de ces événements est de type QUIT
+                        pygame.quit() # on quitte
+                        quit()
+                    else:
+                        if (event.type != pygame.MOUSEBUTTONDOWN): #tant qu'on appuie pas, on continue
+                            continue           
+                    if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and 0 < event.pos[1] < 115 and 0 < event.pos[0] < 160:
+                        return "clover"
+                        continuer = 0
+                    elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and 0 < event.pos[1] < 115 and 160 < event.pos[0] < 320:
+                        return "maya"
+                        continuer = 0
+                    elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and 0 < event.pos[1] < 155 and 320 < event.pos[0] < 480:
+                        return "alice"
+                        continuer = 0
+                    else:
+                        continue
+                    
       
 def effet_choix(n_event, lovejaugeactuelle):
     #n correspond à l'effet du bouton choisi
@@ -17,7 +41,7 @@ def effet_choix(n_event, lovejaugeactuelle):
     #Cette fonction fait varier la lovejauge en fonction du choix
     if n_event == 0:
         lovejaugeactuelle += 0
-    if lovejaugeactuelle < 100 and n_event == 1:
+    elif lovejaugeactuelle < 100 and n_event == 1:
         lovejaugeactuelle += 25
     else:
         if lovejaugeactuelle == 0:
@@ -109,6 +133,8 @@ def main():
    
     #Ouverture de la fenêtre Pygame
     fenetre = pygame.display.set_mode((640, 480))
+    
+    #menu() CA ON VERRA SELON NOTRE TIME
         
     #girl = choix_fille() # on choisit la fille à séduire
 
@@ -116,9 +142,12 @@ def main():
     fond = pygame.image.load("fond_classe.png").convert()
     fenetre.blit(fond, (0,0)) 
     test_pic = pygame.image.load("test.png").convert() #à supprimer après
+    
+    choix_fille = pygame.image.load("choix_fille.png").convert()#on charge l'image de toutes les filles
 
     #Rafraîchissement de l'écran, essentiel !
     pygame.display.flip()
+    i = 0
 
     #Boucle infinie
     continuer = 1
@@ -128,7 +157,9 @@ def main():
                 continuer = 0 #Si un de ces événements est de type QUIT
                 #pygame.quit()      #On arrête la boucle
             else:
-                girl = "clover" #temporaire 
+                
+                girl = fille(fenetre, choix_fille) # on choisit la fille
+                #girl = "clover" #temporaire 
                 if girl == "clover":
                     girl_pic = pygame.image.load("clover_happy.png").convert_alpha()
                     #on charge le photo de CLOVER
@@ -174,7 +205,7 @@ def main():
                     pic_6 = pygame.image.load("dialogue_m_6.png").convert_alpha()
                     pic_6_2 = pygame.image.load("choix_m_6.png").convert_alpha()
                     n_event_6 = (pic_6, 0, 1, 2, pic_6_2)
-                else:
+                elif girl == "alice":
                     dialogue_mec = pygame.image.load("dialogue_a_0.png").convert_alpha()
                     girl_pic = pygame.image.load("alice_happy.png").convert_alpha()
                     pic_1 = pygame.image.load("dialogue_a_1.png").convert_alpha()
@@ -201,7 +232,7 @@ def main():
                 fenetre.blit(girl_pic, (0,0)) #on ajoute à la fenetre, l'image de la fille
                 #fenetre.blit(test_pic, (0,0))
                 pygame.display.flip()
-                i = 0
+               
                 while i < 6:
                 #for i in range(0,6):
                     #Chargement et collage du personnage
@@ -227,8 +258,9 @@ def main():
                         n_event = n_event_6
                         i += 1
 
-                    lovejauge = choix(n_event, lovejaugeactuelle, girl_pic, fenetre, test_pic) # ca c'est la fonction smoothie
-                    lovepict = image_lovejauge(lovejauge)
+                    lovejaugeactuelle = choix(n_event, lovejaugeactuelle, girl_pic, fenetre, test_pic) # ca c'est la fonction smoothie
+                    print ("i=", i)
+                    lovepict = image_lovejauge(lovejaugeactuelle)
                     fenetre.blit(lovepict, (0,0))
                     pygame.display.flip()
                     
