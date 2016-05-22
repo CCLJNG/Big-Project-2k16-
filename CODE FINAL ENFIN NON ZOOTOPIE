@@ -9,9 +9,8 @@ import pygame #Importation de notre module principal
 #def menu(): #seulement si on a le temps....
 #    pass
 
-def fille(fenetre, choix_fille):
+def fille(choix_fille, girlwtf):
     continuer = 1
-    fenetre.blit(choix_fille, (0,0))
     
     for event in pygame.event.get():
         while continuer != 0:
@@ -22,18 +21,18 @@ def fille(fenetre, choix_fille):
                     else:
                         if (event.type != pygame.MOUSEBUTTONDOWN): #tant qu'on appuie pas, on continue
                             continue           
-                    if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and 0 < event.pos[1] < 115 and 0 < event.pos[0] < 160:
-                        return "clover"
+                    if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and 0 < event.pos[1] < 365 and 0 < event.pos[0] <= 213:
+                        girlwtf = "clover"
                         continuer = 0
-                    elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and 0 < event.pos[1] < 115 and 160 < event.pos[0] < 320:
-                        return "maya"
+                    elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and 0 < event.pos[1] < 365 and 213 < event.pos[0] < 427:
+                        girlwtf = "maya"
                         continuer = 0
-                    elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and 0 < event.pos[1] < 155 and 320 < event.pos[0] < 480:
-                        return "alice"
+                    elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and 0 < event.pos[1] < 365 and 427 <= event.pos[0] < 640:
+                        girlwtf = "alice"
                         continuer = 0
                     else:
                         continue
-                    
+    return girlwtf
       
 def effet_choix(n_event, lovejaugeactuelle):
     #n correspond à l'effet du bouton choisi
@@ -66,7 +65,7 @@ def image_lovejauge(lovejauge): #fonction renvoyant une image qui correspond à 
     return lovepic
     
     
-def choix(n_event, lovejaugeactuelle, girl_pic, fenetre, test_pic): #CA CEST LA MACHINE A SMOOTHIE OK 
+def choix(n_event, lovejaugeactuelle, girl_pic, fenetre): #CA CEST LA MACHINE A SMOOTHIE OK 
     #n_event est le numero du dialogue 
      #on ajoute le dialogue de la fille
     i = 1
@@ -140,14 +139,20 @@ def main():
 
     #Chargement et collage du fond
     fond = pygame.image.load("fond_classe.png").convert()
-    fenetre.blit(fond, (0,0)) 
-    test_pic = pygame.image.load("test.png").convert() #à supprimer après
+    fenetre.blit(fond, (0,0))
+
+    girlwtf = pygame.image.load("test.png").convert() #à supprimer après
     
     choix_fille = pygame.image.load("choix_fille.png").convert()#on charge l'image de toutes les filles
+    fenetre.blit(choix_fille, (0,0))
 
     #Rafraîchissement de l'écran, essentiel !
     pygame.display.flip()
     i = 0
+
+    blabla = 0 # pour pas qu'il skip
+
+
 
     #Boucle infinie
     continuer = 1
@@ -158,7 +163,7 @@ def main():
                 #pygame.quit()      #On arrête la boucle
             else:
                 
-                girl = fille(fenetre, choix_fille) # on choisit la fille
+                girl = fille(choix_fille, girlwtf) # on choisit la fille
                 #girl = "clover" #temporaire 
                 if girl == "clover":
                     girl_pic = pygame.image.load("clover_happy.png").convert_alpha()
@@ -184,6 +189,7 @@ def main():
                     pic_6 = pygame.image.load("dialogue_c_6.png").convert_alpha()
                     pic_6_2 = pygame.image.load("choix_c_6.png").convert_alpha()
                     n_event_6 = (pic_6, 0, 1, 2, pic_6_2)
+                    blabla = 1
                 elif girl == "maya":
                     dialogue_mec = pygame.image.load("dialogue_m_0.png").convert_alpha()
                     girl_pic = pygame.image.load("maya_happy.png").convert_alpha()
@@ -205,6 +211,7 @@ def main():
                     pic_6 = pygame.image.load("dialogue_m_6.png").convert_alpha()
                     pic_6_2 = pygame.image.load("choix_m_6.png").convert_alpha()
                     n_event_6 = (pic_6, 0, 1, 2, pic_6_2)
+                    blabla = 1
                 elif girl == "alice":
                     dialogue_mec = pygame.image.load("dialogue_a_0.png").convert_alpha()
                     girl_pic = pygame.image.load("alice_happy.png").convert_alpha()
@@ -226,43 +233,44 @@ def main():
                     pic_6 = pygame.image.load("dialogue_a_6.png").convert_alpha()
                     pic_6_2 = pygame.image.load("choix_a_6.png").convert_alpha()
                     n_event_6 = (pic_6, 0, 1, 2, pic_6_2)
-                    
-                lovejaugeactuelle = 0 #on initialise notre love jauge à 0, normal!
-                #perso = pygame.image.load(girl_).convert_alpha()
-                fenetre.blit(girl_pic, (0,0)) #on ajoute à la fenetre, l'image de la fille
-                #fenetre.blit(test_pic, (0,0))
-                pygame.display.flip()
-               
-                while i < 6:
-                #for i in range(0,6):
-                    #Chargement et collage du personnage
-                    #Pour les 6 interactions on appelle la fonction "smoothie"
-                    if i == 0:
-                        fenetre.blit(dialogue_mec, (0,0)) #tout d'abord, on place le dialogue du garçon
-                        n_event = n_event_1                
-                        pygame.display.flip()
-                        i += 1
-                    elif i == 1:
-                        n_event = n_event_2
-                        i += 1
-                    elif i == 2:
-                        n_event = n_event_3
-                        i += 1
-                    elif i == 3:
-                        n_event = n_event_4
-                        i += 1
-                    elif i == 4:
-                        n_event = n_event_5
-                        i += 1
-                    elif i == 5:
-                        n_event = n_event_6
-                        i += 1
-
-                    lovejaugeactuelle = choix(n_event, lovejaugeactuelle, girl_pic, fenetre, test_pic) # ca c'est la fonction smoothie
-                    print ("i=", i)
-                    lovepict = image_lovejauge(lovejaugeactuelle)
-                    fenetre.blit(lovepict, (0,0))
+                    blabla = 1
+                if blabla == 1:    
+                    lovejaugeactuelle = 0 #on initialise notre love jauge à 0, normal!
+                    #perso = pygame.image.load(girl_).convert_alpha()
+                    fenetre.blit(girl_pic, (0,0)) #on ajoute à la fenetre, l'image de la fille
+                    #fenetre.blit(test_pic, (0,0))
                     pygame.display.flip()
+                   
+                    while i < 6:
+                    #for i in range(0,6):
+                        #Chargement et collage du personnage
+                        #Pour les 6 interactions on appelle la fonction "smoothie"
+                        if i == 0:
+                            fenetre.blit(dialogue_mec, (0,0)) #tout d'abord, on place le dialogue du garçon
+                            n_event = n_event_1                
+                            pygame.display.flip()
+                            i += 1
+                        elif i == 1:
+                            n_event = n_event_2
+                            i += 1
+                        elif i == 2:
+                            n_event = n_event_3
+                            i += 1
+                        elif i == 3:
+                            n_event = n_event_4
+                            i += 1
+                        elif i == 4:
+                            n_event = n_event_5
+                            i += 1
+                        elif i == 5:
+                            n_event = n_event_6
+                            i += 1
+    
+                        lovejaugeactuelle = choix(n_event, lovejaugeactuelle, girl_pic, fenetre) # ca c'est la fonction smoothie
+                        print ("i=", i)
+                        lovepict = image_lovejauge(lovejaugeactuelle)
+                        fenetre.blit(lovepict, (0,0))
+                        pygame.display.flip()
                     
     pygame.display.flip()
     pygame.quit()
