@@ -26,257 +26,300 @@ def fille(choix_fille, girlwtf):
                 if (event.type != pygame.MOUSEBUTTONDOWN): #tant qu'on appuie pas, on continue
                     continue           
                 if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and 0 < event.pos[1] < 365 and 0 < event.pos[0] <= 213:
-                    girlwtf = "clover"
-                    continuer = 0
+                    girlchoisie = "clover"
+                    continuer = 0 #pour sortir de la boucle
                 elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and 0 < event.pos[1] < 365 and 213 < event.pos[0] < 427:
-                    girlwtf = "maya"
+                    girlchoisie = "maya"
                     continuer = 0
                 elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and 0 < event.pos[1] < 365 and 427 <= event.pos[0] < 640:
-                    girlwtf = "alice"
+                    girlchoisie = "alice"
                     continuer = 0
 
-    return girlwtf
+    return girlchoisie
       
 def effet_choix(n_event, lovejaugeactuelle):
-    #n correspond à l'effet du bouton choisi
-    #lovejauge correspond a la lovejauge de la meuf choisie
-    #Cette fonction fait varier la lovejauge en fonction du choix
+    """
+    fonction qui va renvoyer un int, correspondant à la valeur de la lovejauge
+    selon le choix qu'on aura pris dans le jeu
+    
+    n_event est un int, correspondant à l'effet du bouton choisi
+    lovejaugeactuelle est un int, correspondant à la valeur de la lovejauge actuelle
+    """
+
     if n_event == 0:
         lovejaugeactuelle += 0
-    elif lovejaugeactuelle < 100 and n_event == 1:
-        lovejaugeactuelle += 25
+        
+    elif n_event ==1:
+        if lovejaugeactuelle < 100:
+            lovejaugeactuelle += 25
+        if lovejaugeactuelle == 100:
+            lovejaugeactuelle += 0 # car le maximum est 100
     else:
-        if lovejaugeactuelle == 0:
+        if lovejaugeactuelle == 0: #pour pas avoir de lovejauge négative! le minimum étant 0
             lovejaugeactuelle = 0
         elif lovejaugeactuelle > 0 and lovejaugeactuelle <= 100:
             lovejaugeactuelle -= 25
         
     return lovejaugeactuelle #retourne la veleur de lovejaugeactuelle soit, un int
 
-def image_lovejauge(lovejauge): #fonction renvoyant une image qui correspond à la valeur de lovejauge
+def image_lovejauge(lovejauge, lovejauge_0, lovejauge_25, lovejauge_50, lovejauge_75, lovejauge_100): 
+    """
+    fonction qui va renvoyer une image, correspondant à la valeur de lovejauge
+    c'est à dire que si lovejauge = 0 alors on renvoit l'image de la lovejauge vide    
+    """
+    
     if lovejauge == 0:
-        lovepic = pygame.image.load("lovejauge_0.png").convert_alpha()
+        lovepic = lovejauge_0
     elif lovejauge == 25:
-        lovepic = pygame.image.load("lovejauge_25.png").convert_alpha()
+        lovepic = lovejauge_25
     elif lovejauge == 50:
-        lovepic = pygame.image.load("lovejauge_50.png").convert_alpha()
+        lovepic = lovejauge_50
     elif lovejauge == 75:
-        lovepic = pygame.image.load("lovejauge_75.png").convert_alpha()
+        lovepic = lovejauge_75
     else:
-        lovepic = pygame.image.load("lovejauge_100.png").convert_alpha()
+        lovepic = lovejauge_100
         
-    return lovepic
+    return lovepic #on retourne l'image de lovejauge qui correspond à sa valeur
     
     
 def choix(n_event, lovejaugeactuelle, girl_pic, fenetre): #CA CEST LA MACHINE A SMOOTHIE OK 
-    #n_event est le numero du dialogue 
-     #on ajoute le dialogue de la fille
+    """
+    fonction qui va renvoyer la valeur de la lovejauge (int)
+    
+    la fonction va afficher les dialogues / les interactions entre le garçon
+    et la fille
+    
+    au tout début il y aura la phrase d'accroche du garçon et ensuite ses paroles
+    seront affichées au niveau des choix, c'est le player qui va décider de sa réponse
+    
+    le dialogue en bas correspondra à la réponse de la fille
+    
+    n_event est le numero du dialogue ( dialogue 1 = première interaction ) 
+    """
+    
     i = 1
     choix_affiches = 0
-    suite = 0
-    continuer = 1
-    while i == 1:
-        
-        #sinon ça continue sans nous parce qu'on est pas en train de cliquer sur un bouton        
-        #fenetre.blit(test_pic, (0,0))
-        #pygame.event.set_allowed(pygame.MOUSEBUTTONDOWN)
-        for event in pygame.event.get():            
-            while continuer != 0:
-    
-                for event in pygame.event.get():   #On parcours la liste de tous les événements reçus
-                    if event.type == pygame.QUIT:     #Si un de ces événements est de type QUIT
-                        pygame.quit() # on quitte
-                        quit()
-                    else:
-                        if (event.type != pygame.MOUSEBUTTONDOWN): #tant qu'on appuie pas, on continue
-                            continue           
-                        print("choix_affiches=" , choix_affiches)
-                        print(event)
-                        print("suite=", suite)
-                        print("lovejaugeactuelle=", lovejaugeactuelle)
+    suite = 0 # on initalise à 0
+
+    while i == 1:          #tant que i = 1, boucle   
+
+        for event in pygame.event.get():   #On parcours la liste de tous les événements reçus
+            if event.type == pygame.QUIT:     #Si un de ces événements est de type QUIT
+                pygame.quit() # on désinitialise tous les modules de Pygame
+                quit() #on quitte
+            else:
+             
+                if suite == 0:
+                    
+                        #si on appuie sur le bouton next qui permettra d'avancer dans le dialogue alors..
+                    if (event.type == pygame.MOUSEBUTTONDOWN) and (event.button == 1) and (380 < event.pos[1] < 480) and (540 < event.pos[0] < 640): 
+                        fenetre.blit(n_event[0], (0,0)) #on ajoute l'image de la réponse de la fille après la phrase d'accroche du garçon  
+                        fenetre.blit(n_event[4], (0,0))
+                        pygame.display.flip()
+                        choix_affiches = 1
+                        suite = 1 #on sort alors de la boucle et on passe à la suite :)
                         
-                        if suite != 2:
-                            if (event.type == pygame.MOUSEBUTTONDOWN) and (event.button == 1) and (380 < event.pos[1] < 480) and (540 < event.pos[0] < 640): #c'est le bouton coeur pour avancer dans le dialogue
-                                fenetre.blit(n_event[0], (0,0))    
-                                pygame.display.flip()
-                                suite = 1
-                                if suite == 1:
-                                    if (event.type == pygame.MOUSEBUTTONDOWN) and (event.button == 1) and (380 < event.pos[1] < 480) and (540 < event.pos[0] < 640):
-                                        fenetre.blit(n_event[4], (0,0)) #si on appuie sur "next", l'image avec les choix s'affiche
-                                        pygame.display.flip()
-                                        choix_affiches = 1 
-                                        suite = 2
-                                    else:
-                                        continue
-                            else:
-                                continue
+                    else:
+                        continue #tant qu'on a pas appuyer sur le bouton coeur à la bonne position on ne passera pas à la suite!
                             
-                            
-                        if choix_affiches == 1:
-                            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and 50 < event.pos[1] < 100 and 50 < event.pos[0] < 430:
-                                lovejauge = effet_choix(n_event[1], lovejaugeactuelle)
-                                i = 0
-                            elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and 150 < event.pos[1] < 200 and 50 < event.pos[0] < 430:
-                                lovejauge = effet_choix(n_event[2], lovejaugeactuelle)
-                                i = 0
-                            elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and 250 < event.pos[1] < 300 and 50 < event.pos[0] < 430:
-                                lovejauge = effet_choix(n_event[3], lovejaugeactuelle)
-                                i = 0
-                            else:
-                                continue
-                        pygame.display.flip() 
-                    continuer = 0
-            
-    return lovejauge
+                    
+                if choix_affiches == 1:
+                    
+                    #si on appuie sur le premier choix alors...
+                    if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and 50 < event.pos[1] < 100 and 50 < event.pos[0] < 430:                           
+                        #on attribue à la variable lovejauge, la valeur en int de la nouvelle lovejauge
+                        lovejauge = effet_choix(n_event[1], lovejaugeactuelle) 
+                        i = 0 #pour sortir de la boucle et donc sortir de la fonction après
+                    elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and 150 < event.pos[1] < 200 and 50 < event.pos[0] < 430:
+                        lovejauge = effet_choix(n_event[2], lovejaugeactuelle)
+                        i = 0
+                    elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and 250 < event.pos[1] < 300 and 50 < event.pos[0] < 430:
+                        lovejauge = effet_choix(n_event[3], lovejaugeactuelle)
+                        i = 0
+                    else:
+                        continue #tant qu'on a pas appuyé sur un choix, on ne passera pas à la suite, la boucle se répète
+                
+    return lovejauge #retourne en int, la valeur de la love jauge!
     
 def main():
     
     pygame.init() #on initialise les modules importés de pygame
    
-    #Ouverture de la fenêtre Pygame
+    #ouverture de la fenêtre Pygame
     fenetre = pygame.display.set_mode((640, 480))
     
-    #menu() CA ON VERRA SELON NOTRE TIME
-        
-    #girl = choix_fille() # on choisit la fille à séduire
-
-    #Chargement et collage du fond
+    #chargement des images du fond, et des niveaux de love jauge
     fond = pygame.image.load("fond_classe.png").convert()
-
-    girlwtf = pygame.image.load("test.png").convert() #à supprimer après
     
-    choix_fille = pygame.image.load("choix_fille.png").convert()#on charge l'image de toutes les filles
+    lovejauge_0 = pygame.image.load("lovejauge_0.png").convert_alpha()
+    lovejauge_25 = pygame.image.load("lovejauge_25.png").convert_alpha()
+    lovejauge_50 = pygame.image.load("lovejauge_50.png").convert_alpha()
+    lovejauge_75 = pygame.image.load("lovejauge_75.png").convert_alpha()
+    lovejauge_100 = pygame.image.load("lovejauge_100.png").convert_alpha()
+    
+    choix_fille = pygame.image.load("choix_fille.png").convert() #on charge l'image de toutes les filles
+    
+    #collage de l'image choix_fille à la position (0,0) sur la fenetre
     fenetre.blit(choix_fille, (0,0))
 
-    #Rafraîchissement de l'écran, essentiel !
+    #rafraîchissement de l'écran, essentiel !
     pygame.display.flip()
-    i = 0
-
-    blabla = 0 # pour pas qu'il skip
-
-
-
-    #Boucle infinie
-    continuer = 1
-    while continuer != 0:
-        for event in pygame.event.get():   #On parcours la liste de tous les événements reçus
-            if event.type == pygame.QUIT: 
-                continuer = 0 #Si un de ces événements est de type QUIT
-                #pygame.quit()      #On arrête la boucle
-            else:
-                
-                girl = fille(choix_fille, girlwtf) # on choisit la fille
-                fenetre.blit(fond, (0,0))
-                #girl = "clover" #temporaire 
-                if girl == "clover":
-                    girl_pic = pygame.image.load("clover_happy.png").convert_alpha()
-                    #on charge le photo de CLOVER
-                    
-                    #on va charger toutes les images de dialogue et les choix possibles pour les 6 interactions
-                    dialogue_mec = pygame.image.load("dialogue_c_0.png").convert_alpha()
-                    pic_1 = pygame.image.load("dialogue_c_1.png").convert_alpha()
-                    pic_1_2 = pygame.image.load("choix_c_1.png").convert_alpha()
-                    n_event_1 = (pic_1, 1, 2, 0, pic_1_2)
-                    pic_2 = pygame.image.load("dialogue_c_2.png").convert_alpha()
-                    pic_2_2 = pygame.image.load("choix_c_2.png").convert_alpha()
-                    n_event_2 = (pic_2, 1, 0, 2, pic_2_2)                    
-                    pic_3 = pygame.image.load("dialogue_c_3.png").convert_alpha()
-                    pic_3_2 = pygame.image.load("choix_c_3.png").convert_alpha()
-                    n_event_3 = (pic_3, 1, 0, 2, pic_3_2)
-                    pic_4 = pygame.image.load("dialogue_c_4.png").convert_alpha()
-                    pic_4_2 = pygame.image.load("choix_c_4.png").convert_alpha()
-                    n_event_4 = (pic_4, 2, 1, 0, pic_4_2)
-                    pic_5 = pygame.image.load("dialogue_c_5.png").convert_alpha()
-                    pic_5_2 = pygame.image.load("choix_c_5.png").convert_alpha()
-                    n_event_5 = (pic_5, 1, 2, 0, pic_5_2)
-                    pic_6 = pygame.image.load("dialogue_c_6.png").convert_alpha()
-                    pic_6_2 = pygame.image.load("choix_c_6.png").convert_alpha()
-                    n_event_6 = (pic_6, 0, 1, 2, pic_6_2)
-                    blabla = 1
-                elif girl == "maya":
-                    dialogue_mec = pygame.image.load("dialogue_m_0.png").convert_alpha()
-                    girl_pic = pygame.image.load("maya_happy.png").convert_alpha()
-                    pic_1 = pygame.image.load("dialogue_m_1.png").convert_alpha()
-                    pic_1_2 = pygame.image.load("choix_m_1.png").convert_alpha()
-                    n_event_1 = (pic_1, 1, 2, 0, pic_1_2)
-                    pic_2 = pygame.image.load("dialogue_m_2.png").convert_alpha()
-                    pic_2_2 = pygame.image.load("choix_m_2.png").convert_alpha()
-                    n_event_2 = (pic_2, 1, 0, 2, pic_2_2)
-                    pic_3 = pygame.image.load("dialogue_m_3.png").convert_alpha()
-                    pic_3_2 = pygame.image.load("choix_m_3.png").convert_alpha()
-                    n_event_3 = (pic_3, 1, 0, 2, pic_3_2)
-                    pic_4 = pygame.image.load("dialogue_m_4.png").convert_alpha()
-                    pic_4_2 = pygame.image.load("choix_m_4.png").convert_alpha()
-                    n_event_4 = (pic_4, 2, 1, 0, pic_4_2)
-                    pic_5 = pygame.image.load("dialogue_m_5.png").convert_alpha()
-                    pic_5_2 = pygame.image.load("choix_m_5.png").convert_alpha()
-                    n_event_5 = (pic_5, 1, 2, 0, pic_5_2)
-                    pic_6 = pygame.image.load("dialogue_m_6.png").convert_alpha()
-                    pic_6_2 = pygame.image.load("choix_m_6.png").convert_alpha()
-                    n_event_6 = (pic_6, 0, 1, 2, pic_6_2)
-                    blabla = 1
-                elif girl == "alice":
-                    dialogue_mec = pygame.image.load("dialogue_a_0.png").convert_alpha()
-                    girl_pic = pygame.image.load("alice_happy.png").convert_alpha()
-                    pic_1 = pygame.image.load("dialogue_a_1.png").convert_alpha()
-                    pic_1_2 = pygame.image.load("choix_a_1.png").convert_alpha()
-                    n_event_1 = (pic_1, 1, 2, 0, pic_1_2)
-                    pic_2 = pygame.image.load("dialogue_a_2.png").convert_alpha()
-                    pic_2_2 = pygame.image.load("choix_a_2.png").convert_alpha()
-                    n_event_2 = (pic_2, 1, 0, 2, pic_2_2)
-                    pic_3 = pygame.image.load("dialogue_a_3.png").convert_alpha()
-                    pic_3_2 = pygame.image.load("choix_a_3.png").convert_alpha()
-                    n_event_3 = (pic_3, 1, 0, 2, pic_3_2)
-                    pic_4 = pygame.image.load("dialogue_a_4.png").convert_alpha()
-                    pic_4_2 = pygame.image.load("choix_a_4.png").convert_alpha()
-                    n_event_4 = (pic_4, 2, 1, 0, pic_4_2)
-                    pic_5 = pygame.image.load("dialogue_a_5.png").convert_alpha()
-                    pic_5_2 = pygame.image.load("choix_a_5.png").convert_alpha()
-                    n_event_5 = (pic_5, 1, 2, 0, pic_5_2)
-                    pic_6 = pygame.image.load("dialogue_a_6.png").convert_alpha()
-                    pic_6_2 = pygame.image.load("choix_a_6.png").convert_alpha()
-                    n_event_6 = (pic_6, 0, 1, 2, pic_6_2)
-                    blabla = 1
-                if blabla == 1:    
-                    lovejaugeactuelle = 0 #on initialise notre love jauge à 0, normal!
-                    #perso = pygame.image.load(girl_).convert_alpha()
-                    fenetre.blit(girl_pic, (0,0)) #on ajoute à la fenetre, l'image de la fille
-                    #fenetre.blit(test_pic, (0,0))
-                    pygame.display.flip()
-                   
-                    while i < 6:
-                    #for i in range(0,6):
-                        #Chargement et collage du personnage
-                        #Pour les 6 interactions on appelle la fonction "smoothie"
-                        if i == 0:
-                            fenetre.blit(dialogue_mec, (0,0)) #tout d'abord, on place le dialogue du garçon
-                            n_event = n_event_1                
-                            pygame.display.flip()
-                            i += 1
-                        elif i == 1:
-                            n_event = n_event_2
-                            i += 1
-                        elif i == 2:
-                            n_event = n_event_3
-                            i += 1
-                        elif i == 3:
-                            n_event = n_event_4
-                            i += 1
-                        elif i == 4:
-                            n_event = n_event_5
-                            i += 1
-                        elif i == 5:
-                            n_event = n_event_6
-                            i += 1
     
-                        lovejaugeactuelle = choix(n_event, lovejaugeactuelle, girl_pic, fenetre) # ca c'est la fonction smoothie
-                        print ("i=", i)
-                        lovepict = image_lovejauge(lovejaugeactuelle)
-                        fenetre.blit(lovepict, (0,0))
+    i = 0
+    girlchoisie = ""
+    boucle_interaction = 0 # pour pas qu'il skip , initialisation
+    lovejaugeactuelle = 0
+
+
+
+    for event in pygame.event.get():   #On parcours la liste de tous les événements reçus
+        if event.type == pygame.QUIT:  #Si un de ces événements est de type QUIT
+            pygame.quit()        #on désinitialise tous les modules de Pygame
+            quit()              # o nquitte
+        else:
+            
+            girl = fille(choix_fille, girlchoisie)
+            """
+    on stock dans la variable girl, la chaîne de caractère 
+    correspondant à la fille qu'on aura choisi via l'appel
+    de la fonction fille avec comme pour paramètre, l'image
+    de choix_fille et girlchoisie(emplacement pour stocker le nom
+    de la fille choisie
+            """
+           
+            fenetre.blit(fond, (0,0)) #on ajoute à "fenetre", le fond en position (0,0)
+            
+            if girl == "clover":
+                #on charge toutes les images concernant clover pour les 6 interactions
+                #c'est à dire, le dialogue, sa tête et les choix pour elle
+                girl_pic = pygame.image.load("clover_happy.png").convert_alpha()
+                dialogue_mec = pygame.image.load("dialogue_c_0.png").convert_alpha()
+                pic_1 = pygame.image.load("dialogue_c_1.png").convert_alpha()
+                pic_1_2 = pygame.image.load("choix_c_1.png").convert_alpha()
+                n_event_1 = (pic_1, 1, 2, 0, pic_1_2)
+                pic_2 = pygame.image.load("dialogue_c_2.png").convert_alpha()
+                pic_2_2 = pygame.image.load("choix_c_2.png").convert_alpha()
+                n_event_2 = (pic_2, 1, 0, 2, pic_2_2)                    
+                pic_3 = pygame.image.load("dialogue_c_3.png").convert_alpha()
+                pic_3_2 = pygame.image.load("choix_c_3.png").convert_alpha()
+                n_event_3 = (pic_3, 1, 0, 2, pic_3_2)
+                pic_4 = pygame.image.load("dialogue_c_4.png").convert_alpha()
+                pic_4_2 = pygame.image.load("choix_c_4.png").convert_alpha()
+                n_event_4 = (pic_4, 2, 1, 0, pic_4_2)
+                pic_5 = pygame.image.load("dialogue_c_5.png").convert_alpha()
+                pic_5_2 = pygame.image.load("choix_c_5.png").convert_alpha()
+                n_event_5 = (pic_5, 1, 2, 0, pic_5_2)
+                pic_6 = pygame.image.load("dialogue_c_6.png").convert_alpha()
+                pic_6_2 = pygame.image.load("choix_c_6.png").convert_alpha()
+                n_event_6 = (pic_6, 0, 1, 2, pic_6_2)
+                
+                boucle_interaction = 1
+                
+            elif girl == "maya":
+                #même principe que pour clover
+                dialogue_mec = pygame.image.load("dialogue_m_0.png").convert_alpha()
+                girl_pic = pygame.image.load("maya_happy.png").convert_alpha()
+                pic_1 = pygame.image.load("dialogue_m_1.png").convert_alpha()
+                pic_1_2 = pygame.image.load("choix_m_1.png").convert_alpha()
+                n_event_1 = (pic_1, 1, 2, 0, pic_1_2)
+                pic_2 = pygame.image.load("dialogue_m_2.png").convert_alpha()
+                pic_2_2 = pygame.image.load("choix_m_2.png").convert_alpha()
+                n_event_2 = (pic_2, 1, 0, 2, pic_2_2)
+                pic_3 = pygame.image.load("dialogue_m_3.png").convert_alpha()
+                pic_3_2 = pygame.image.load("choix_m_3.png").convert_alpha()
+                n_event_3 = (pic_3, 1, 0, 2, pic_3_2)
+                pic_4 = pygame.image.load("dialogue_m_4.png").convert_alpha()
+                pic_4_2 = pygame.image.load("choix_m_4.png").convert_alpha()
+                n_event_4 = (pic_4, 2, 1, 0, pic_4_2)
+                pic_5 = pygame.image.load("dialogue_m_5.png").convert_alpha()
+                pic_5_2 = pygame.image.load("choix_m_5.png").convert_alpha()
+                n_event_5 = (pic_5, 1, 2, 0, pic_5_2)
+                pic_6 = pygame.image.load("dialogue_m_6.png").convert_alpha()
+                pic_6_2 = pygame.image.load("choix_m_6.png").convert_alpha()
+                n_event_6 = (pic_6, 0, 1, 2, pic_6_2)
+                
+                boucle_interaction = 1
+                
+            elif girl == "alice":
+                #même principe que pour clover
+                dialogue_mec = pygame.image.load("dialogue_a_0.png").convert_alpha()
+                girl_pic = pygame.image.load("alice_happy.png").convert_alpha()
+                pic_1 = pygame.image.load("dialogue_a_1.png").convert_alpha()
+                pic_1_2 = pygame.image.load("choix_a_1.png").convert_alpha()
+                n_event_1 = (pic_1, 1, 2, 0, pic_1_2)
+                pic_2 = pygame.image.load("dialogue_a_2.png").convert_alpha()
+                pic_2_2 = pygame.image.load("choix_a_2.png").convert_alpha()
+                n_event_2 = (pic_2, 1, 0, 2, pic_2_2)
+                pic_3 = pygame.image.load("dialogue_a_3.png").convert_alpha()
+                pic_3_2 = pygame.image.load("choix_a_3.png").convert_alpha()
+                n_event_3 = (pic_3, 1, 0, 2, pic_3_2)
+                pic_4 = pygame.image.load("dialogue_a_4.png").convert_alpha()
+                pic_4_2 = pygame.image.load("choix_a_4.png").convert_alpha()
+                n_event_4 = (pic_4, 2, 1, 0, pic_4_2)
+                pic_5 = pygame.image.load("dialogue_a_5.png").convert_alpha()
+                pic_5_2 = pygame.image.load("choix_a_5.png").convert_alpha()
+                n_event_5 = (pic_5, 1, 2, 0, pic_5_2)
+                pic_6 = pygame.image.load("dialogue_a_6.png").convert_alpha()
+                pic_6_2 = pygame.image.load("choix_a_6.png").convert_alpha()
+                n_event_6 = (pic_6, 0, 1, 2, pic_6_2)
+                
+                boucle_interaction = 1
+                
+            if boucle_interaction == 1:    
+                
+                fenetre.blit(girl_pic, (0,0)) #on ajoute à la fenetre, l'image de la fille
+
+                pygame.display.flip() #on rafraichit
+               
+                while i < 6:
+
+                    #Pour les 6 interactions on appellera la fonction choix et image_lovejauge 
+                    if i == 0:
+                        fenetre.blit(dialogue_mec, (0,0)) #tout d'abord, on place le dialogue du garçon
+                        n_event = n_event_1                
                         pygame.display.flip()
+                        i += 1
+                    elif i == 1:
+                        n_event = n_event_2
+                        i += 1
+                    elif i == 2:
+                        n_event = n_event_3
+                        i += 1
+                    elif i == 3:
+                        n_event = n_event_4
+                        i += 1
+                    elif i == 4:
+                        n_event = n_event_5
+                        i += 1
+                    elif i == 5:
+                        n_event = n_event_6
+                        i += 1
+
+                    """
+                    on stock dans la variable lovejaugeactuelle la valeur de 
+                    la love jauge suite au choix établi
+                    via la fonction choix qui utilise un tuple n_vent, la 
+                    love jauge actuelle (int), l'image de la fille à séduire
+                    et la fenetre du jeu
+                     
+                     """
+                    lovejaugeactuelle = choix(n_event, lovejaugeactuelle, girl_pic, fenetre)
+
+                    """
+                    on stock l'image correspondant au niveau de la lovejauge 
+                    dans la variable lovepic
+                    via la fonction image_lovejauge qui utilise la valeur 
+                    de la lovejauge 
+                    ainsi que les images de tous les niveaux de lovejauge possible
+                    """
+                    lovepic = image_lovejauge(lovejaugeactuelle, lovejauge_0, lovejauge_25, lovejauge_50, lovejauge_75, lovejauge_100)
+                    fenetre.blit(lovepic, (0,0)) #on ajoute bien sur l'image de la lovejaugeactuelle à la fenêtre
+                    pygame.display.flip() #on rafraichit
                     
-    pygame.display.flip()
+                        
+    #pygame.display.flip()
     pygame.quit()
     quit()
 
 main()
+
