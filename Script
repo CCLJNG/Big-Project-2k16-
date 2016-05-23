@@ -42,10 +42,10 @@ DD - • Ca te dit d'aller à la piscine ce week-end, petite bronzette?       # 
      • On va au ciné samedi voir un film romantique?                       # Jauge - 25
      • On se fait une sortie au planetarium ?                              # Jauge + 25
 
-Maya - Non, comme tous les week-end, je vais aux Caves de St-Sabin.
+Maya - Non, comme tous les week-end, je vais dans un sanctuaire
 
 DD - • Mais qu'est ce que c'est, ça a l'air cool              # Jauge + 0
-     • T'es vraiment bizarre.                 # Jauge + 25
+     • T'es vraiment bizarre mais..j'aime ça.                 # Jauge + 25
      • Je ne suis pas sûr de venir.           # Jauge - 25
 
 ( if lovejauge == 100:
