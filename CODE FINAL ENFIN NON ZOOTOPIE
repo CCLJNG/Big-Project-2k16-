@@ -50,7 +50,7 @@ DD - • Mais qu'est ce que c'est, ça a l'air cool              # Jauge + 0
 
 ( if lovejauge == 100:
 Maya avec les yeux en coeurs 
-" BRAVO VOUS AVEZ REUSSI A PECHO MAYA ! " 
+" BRAVO VOUS AVEZ REUSSI A SORTIR AVEC MAYA ! " 
 else
 " PLS IMG LOOSE TOTALEEEEEE NUL 0/20 "
 
@@ -78,23 +78,23 @@ DD - • C'est le but Alice :)                    # Jauge + 0
      • Oh excuse-moi !                          # Jauge + 25
      • Je sais. Je suis doué pour ça ^^        # Jauge - 25
 
-Alice - ... /blushed/
+Alice - T'as l'air sympa :)
 
 DD - • Merde, il y a un truc qui cloche avec mon téléphone.. Il manque ton numéro dedans # Jauge + 50
      • C'est quoi ton numéro ?                                                           # Jauge + 25
      • Oh, je dois y aller on continue par sms?                                          # Jauge - 25
 
-Alice - Désolé, je n'ai pas encore de portable.
+Alice - Ah. Désolé, je n'ai pas encore de portable.
 
 DD - • C'est pas grave.                                       # Jauge + 0
-     • C'était juste pour que tu m"aides à trouver un cadeau  # Jauge + 25
+     • C'était juste pour que tu m'aides à trouver un cadeau  # Jauge + 25
      • A ton âge tu n'as toujours pas de portable !           # Jauge - 25
 
-Alice - hm.. 
+Alice - Hmm.. :
 
 DD - • J'ai un super livre à te faire découvrir, tu voudrais venir avec moi à la bibliothèqe ?    # Jauge + 25
      • Bon allez ramène-toi on va boire une tequila! Allez!                                       # Jauge - 25
-     • Au revoir, à la prochaine                                                                  # Jauge + 0
+     • Au revoir, à la prochaine ;)                                                                # Jauge + 0
 
 ------------------------------------------------------------------------------------
 
