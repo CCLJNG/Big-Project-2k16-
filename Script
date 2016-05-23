@@ -18,12 +18,12 @@ DD - • Exactement, t'as tout compris :)                         # Jauge + 0
 
 Maya - Haha ! T'as un bon sens de l'humour toi.
 
-DD - Oui, on me le dit souvent.
-     • Bref ! Mon ex m'a quittée & je suis à la recherche d'une nouvelle meuf   # Jauge - 25
-     • Tu es sur la liste de mes choses à faire.                                # Jauge + 0 (Si la jauge est à 0 elle reste à 0)
-     • Avec ton Q.I. et ton corps, on pourrait faire des enfants incroyables.   # Jauge + 25
+DD :
+     • Bref ! Mon ex m'a quittée & je suis à la recherche d'une nouvelle meuf   # Jauge +0
+     • Tes beaux yeux m'ont plus d'une fois emprisonnés, quand j'imagine ton doux regard, je reste étourdi, envoûté par ta beauté.   # Jauge -25 (Si la jauge est à 0 elle reste à 0)
+     • Avec ton Q.I. et ton corps, on pourrait faire des enfants incroyables, d'ailleurs ta veste est d'enfer!.   # Jauge + 25
 
-Maya - Oh mec ! T'y vas direct au but toi.
+Maya - Oh mec ! Tu vas direct au but toi.
 
 DD - • Tu m'as mal compris !          # Jauge - 25
      • J'insinue rien par là.         # Jauge + 0
@@ -31,21 +31,22 @@ DD - • Tu m'as mal compris !          # Jauge - 25
 
 Maya - T'as raison, l'asphyxiophile c'est pas le fait de parler trop mais c'est le fait d'être bête ! 
 
-DD - Maaaais je te taquine voyons!
+DD 
      • Tes dents sont comme des étoiles... Toutes jaunes et écartées. Je ne peux vivre sans toi.                              # Jauge - 25
-     • Mourrir simplement me serait difficile mais mourrir pour toi me serait une joie éternelle.                             # Jauge + 25
+     • T'es drôle toi! On pourrait bien s'entendre. Mais attends? Tu écoutes du Nirvana! T'es parfaite!                      # Jauge + 25
      • Je t'aime et si on devait me donner une pièce d'un centime à chaque fois que je pense à toi, je serais milliardaire !  # Jauge + 0
-Maya - Ohhh enfait, tu n'es point un diable. T'es sur le point de me voler mon coeur.
 
-DD - • Ca te dit d'aller à la piscine, ce week-end? # Jauge + 0
-     • On va au ciné samedi ?                       # Jauge - 25
-     • On se fait une sortie au planetarium ?       # Jauge + 25
+Maya - Ohhh enfait, tu n'es point un diable. T'essayes de voler mon coeur.
+
+DD - • Ca te dit d'aller à la piscine ce week-end, petite bronzette?       # Jauge + 0
+     • On va au ciné samedi voir un film romantique?                       # Jauge - 25
+     • On se fait une sortie au planetarium ?                              # Jauge + 25
 
 Maya - Non, comme tous les week-end, je vais aux Caves de St-Sabin.
 
-DD - • Mais qu'est ce que c'est?     # Jauge + 0
-     • T'es vraiment bizarre.        # Jauge + 25
-     • Je ne suis pas sûr de venir.  # Jauge - 25
+DD - • Mais qu'est ce que c'est, ça a l'air cool              # Jauge + 0
+     • T'es vraiment bizarre.                 # Jauge + 25
+     • Je ne suis pas sûr de venir.           # Jauge - 25
 
 ( if lovejauge == 100:
 Maya avec les yeux en coeurs 
@@ -109,7 +110,7 @@ DD - • tes parents sont pas terroristes ? parce que tu es une vraie bombe!    
      • les mots me manquent pour te decrire          # Jauge 0
      • Les rencontres sont nombreures. Mais,le hasard de t'avoir croisé est unique. Je veux que cette spécialité grandisse avec toi.    # Jauge -25
 
-Clover - que est ce que tu me veux?
+Clover - Qu'est-ce que tu me veux?
 
 DD - 
      • Pour faire concis, j'ai envie de te gérer.                                 # Jauge + 25
@@ -134,10 +135,10 @@ DD - • ALLEZ ! 1 - 0                                      # Jauge + 25
      • Attends, c'est toi qui me dragues ou l'inverses?   # Jauge - 25
      • Venant de toi, c'est un compliment ?               # Jauge + 0
 
-Clover - hqhqhq tubed bien drôle
+Clover - Hahah tu es bien drôle
 
-DD - • Sinon, ça te dis d'aller boire un p'tit verre?     # Jauge + 0
-     • Tu veux monter sur ma bécane 8).            # Jauge + 25
+DD - • Sinon, ça te dis d'aller boire un p'tit verre?                  # Jauge + 0
+     • Tu veux monter sur ma bécane 8).                               # Jauge + 25
      • Tu veux faire un tour au parc                                  # Jauge - 25
 
 
