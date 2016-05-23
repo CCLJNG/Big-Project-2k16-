@@ -7,15 +7,19 @@ Created on Sat May 21 16:39:09 2016
 import pygame #Importation de notre module principal
 
 
-def final(lovejaugeactuelle, happy_end, bad_end):
+def final(lovejaugeactuelle, happy_end, bad_end, son_win, son_loose, son_musique_win, son_musique_loose):
     """
     fonction renvoyant une image
     si la love jauge est pleine alors le player a gagné
     sinon, il a perdu
     """
     if lovejaugeactuelle == 100:
+        son_win.play() #son TADAA de victoire
+        son_musique_win.play() #musique jap pour la victoire
         ending = happy_end
     else:
+        son_loose.play() #son de défaite
+        son_musique_loose.play() #musique de défaite
         ending = bad_end
         
     return ending
@@ -52,7 +56,7 @@ def fille(choix_fille, girlwtf):
 
     return girlchoisie
       
-def effet_choix(n_event, lovejaugeactuelle):
+def effet_choix(n_event, lovejaugeactuelle, son_correct, son_fail, son_click):
     """
     fonction qui va renvoyer un int, correspondant à la valeur de la lovejauge
     selon le choix qu'on aura pris dans le jeu
@@ -62,14 +66,17 @@ def effet_choix(n_event, lovejaugeactuelle):
     """
 
     if n_event == 0:
+        son_click.play()
         lovejaugeactuelle += 0
         
     elif n_event ==1:
+        son_correct.play()
         if lovejaugeactuelle < 100:
             lovejaugeactuelle += 25
         if lovejaugeactuelle == 100:
             lovejaugeactuelle += 0 # car le maximum est 100
     else:
+        son_fail.play()
         if lovejaugeactuelle == 0: #pour pas avoir de lovejauge négative! le minimum étant 0
             lovejaugeactuelle = 0
         elif lovejaugeactuelle > 0 and lovejaugeactuelle <= 100:
@@ -97,7 +104,7 @@ def image_lovejauge(lovejauge, lovejauge_0, lovejauge_25, lovejauge_50, lovejaug
     return lovepic #on retourne l'image de lovejauge qui correspond à sa valeur
     
     
-def choix(n_event, lovejaugeactuelle, girl_pic, fenetre): #CA CEST LA MACHINE A SMOOTHIE OK 
+def choix(n_event, lovejaugeactuelle, girl_pic, fenetre, son_click, son_correct, son_fail): #CA CEST LA MACHINE A SMOOTHIE OK 
     """
     fonction qui va renvoyer la valeur de la lovejauge (int)
     
@@ -128,6 +135,7 @@ def choix(n_event, lovejaugeactuelle, girl_pic, fenetre): #CA CEST LA MACHINE A 
                     
                         #si on appuie sur le bouton next qui permettra d'avancer dans le dialogue alors..
                     if (event.type == pygame.MOUSEBUTTONDOWN) and (event.button == 1) and (380 < event.pos[1] < 480) and (540 < event.pos[0] < 640): 
+                        son_click.play()
                         fenetre.blit(n_event[0], (0,0)) #on ajoute l'image de la réponse de la fille après la phrase d'accroche du garçon  
                         fenetre.blit(n_event[4], (0,0))
                         pygame.display.flip()
@@ -143,13 +151,13 @@ def choix(n_event, lovejaugeactuelle, girl_pic, fenetre): #CA CEST LA MACHINE A 
                     #si on appuie sur le premier choix alors...
                     if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and 50 < event.pos[1] < 100 and 50 < event.pos[0] < 430:                           
                         #on attribue à la variable lovejauge, la valeur en int de la nouvelle lovejauge
-                        lovejauge = effet_choix(n_event[1], lovejaugeactuelle) 
+                        lovejauge = effet_choix(n_event[1], lovejaugeactuelle, son_correct, son_fail, son_click) 
                         i = 0 #pour sortir de la boucle et donc sortir de la fonction après
                     elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and 150 < event.pos[1] < 200 and 50 < event.pos[0] < 430:
-                        lovejauge = effet_choix(n_event[2], lovejaugeactuelle)
+                        lovejauge = effet_choix(n_event[2], lovejaugeactuelle, son_correct, son_fail, son_click)
                         i = 0
                     elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and 250 < event.pos[1] < 300 and 50 < event.pos[0] < 430:
-                        lovejauge = effet_choix(n_event[3], lovejaugeactuelle)
+                        lovejauge = effet_choix(n_event[3], lovejaugeactuelle, son_correct, son_fail, son_click)
                         i = 0
                     else:
                         continue #tant qu'on a pas appuyé sur un choix, on ne passera pas à la suite, la boucle se répète
@@ -163,7 +171,7 @@ def main():
     #ouverture de la fenêtre Pygame
     fenetre = pygame.display.set_mode((640, 480))
     
-    #chargement des images du fond, des niveaux de love jauge et d'une mauvaise fin
+    #chargement des images du fond, des niveaux de love jauge, d'une mauvaise fin et des sons
     fond = pygame.image.load("fond_classe.png").convert()
     
     lovejauge_0 = pygame.image.load("lovejauge_0.png").convert_alpha()
@@ -176,6 +184,16 @@ def main():
     
     bad_end = pygame.image.load("bad_end.png").convert_alpha()
     
+    son_click = pygame.mixer.Sound("click.wav")
+    son_correct = pygame.mixer.Sound("correct.wav")
+    son_fail = pygame.mixer.Sound("fail.wav")
+    son_win = pygame.mixer.Sound("win.wav")
+    son_loose = pygame.mixer.Sound("loose.wav")
+    son_musique_jeu = pygame.mixer.Sound("musique_jeu.wav")
+    son_musique_win = pygame.mixer.Sound("musique_win.wav")
+    son_musique_loose = pygame.mixer.Sound("musique_loose.wav")
+    
+    son_musique_jeu.play() #on lance une musique de fond
     #collage de l'image choix_fille à la position (0,0) sur la fenetre
     fenetre.blit(choix_fille, (0,0))
 
@@ -332,7 +350,7 @@ def main():
                     et la fenetre du jeu
                     """
                     
-                    lovejaugeactuelle = choix(n_event, lovejaugeactuelle, girl_pic, fenetre)
+                    lovejaugeactuelle = choix(n_event, lovejaugeactuelle, girl_pic, fenetre, son_click, son_correct, son_fail)
 
                     """
                     on stock l'image correspondant au niveau de la lovejauge 
@@ -347,8 +365,8 @@ def main():
                     pygame.display.flip() #on rafraichit
                 
                     if i == 6: #on arrive à la phase finale
-                    
-                        findujeu = final(lovejaugeactuelle, happy_end, bad_end)
+                        son_musique_jeu.stop()                        
+                        findujeu = final(lovejaugeactuelle, happy_end, bad_end, son_win, son_loose, son_musique_win, son_musique_loose)
                         fenetre.blit(findujeu, (0,0))
                         pygame.display.flip()
                         
