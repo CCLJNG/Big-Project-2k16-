@@ -6,9 +6,24 @@ Created on Sat May 21 16:39:09 2016
 """
 import pygame #Importation de notre module principal
 
-#def menu(): #seulement si on a le temps....
-#    pass
 
+def final(lovejaugeactuelle, happy_end, bad_end):
+    """
+    fonction renvoyant une image
+    si la love jauge est pleine alors le player a gagné
+    sinon, il a perdu
+    """
+    if lovejaugeactuelle == 100:
+        ending = happy_end
+    else:
+        ending = bad_end
+        
+    return ending
+        
+    
+    
+    
+    
 def fille(choix_fille, girlwtf):
     """"
     fonction qui va renvoyer une chaîne de caractère correspondant à la fille
@@ -148,7 +163,7 @@ def main():
     #ouverture de la fenêtre Pygame
     fenetre = pygame.display.set_mode((640, 480))
     
-    #chargement des images du fond, et des niveaux de love jauge
+    #chargement des images du fond, des niveaux de love jauge et d'une mauvaise fin
     fond = pygame.image.load("fond_classe.png").convert()
     
     lovejauge_0 = pygame.image.load("lovejauge_0.png").convert_alpha()
@@ -158,6 +173,8 @@ def main():
     lovejauge_100 = pygame.image.load("lovejauge_100.png").convert_alpha()
     
     choix_fille = pygame.image.load("choix_fille.png").convert() #on charge l'image de toutes les filles
+    
+    bad_end = pygame.image.load("bad_end.png").convert_alpha()
     
     #collage de l'image choix_fille à la position (0,0) sur la fenetre
     fenetre.blit(choix_fille, (0,0))
@@ -213,6 +230,8 @@ def main():
                 pic_6_2 = pygame.image.load("choix_c_6.png").convert_alpha()
                 n_event_6 = (pic_6, 0, 1, 2, pic_6_2)
                 
+                happy_end = pygame.image.load("happy_end_clover.png").convert_alpha()
+                
                 boucle_interaction = 1
                 
             elif girl == "maya":
@@ -221,22 +240,24 @@ def main():
                 girl_pic = pygame.image.load("maya_happy.png").convert_alpha()
                 pic_1 = pygame.image.load("dialogue_m_1.png").convert_alpha()
                 pic_1_2 = pygame.image.load("choix_m_1.png").convert_alpha()
-                n_event_1 = (pic_1, 1, 2, 0, pic_1_2)
+                n_event_1 = (pic_1, 0, 1, 2, pic_1_2)
                 pic_2 = pygame.image.load("dialogue_m_2.png").convert_alpha()
                 pic_2_2 = pygame.image.load("choix_m_2.png").convert_alpha()
-                n_event_2 = (pic_2, 1, 0, 2, pic_2_2)
+                n_event_2 = (pic_2, 2, 0, 1, pic_2_2)
                 pic_3 = pygame.image.load("dialogue_m_3.png").convert_alpha()
                 pic_3_2 = pygame.image.load("choix_m_3.png").convert_alpha()
-                n_event_3 = (pic_3, 1, 0, 2, pic_3_2)
+                n_event_3 = (pic_3, 2, 0, 1, pic_3_2)
                 pic_4 = pygame.image.load("dialogue_m_4.png").convert_alpha()
                 pic_4_2 = pygame.image.load("choix_m_4.png").convert_alpha()
                 n_event_4 = (pic_4, 2, 1, 0, pic_4_2)
                 pic_5 = pygame.image.load("dialogue_m_5.png").convert_alpha()
                 pic_5_2 = pygame.image.load("choix_m_5.png").convert_alpha()
-                n_event_5 = (pic_5, 1, 2, 0, pic_5_2)
+                n_event_5 = (pic_5, 0, 2, 1, pic_5_2)
                 pic_6 = pygame.image.load("dialogue_m_6.png").convert_alpha()
                 pic_6_2 = pygame.image.load("choix_m_6.png").convert_alpha()
                 n_event_6 = (pic_6, 0, 1, 2, pic_6_2)
+                
+                happy_end = pygame.image.load("happy_end_maya.png").convert_alpha()
                 
                 boucle_interaction = 1
                 
@@ -246,22 +267,24 @@ def main():
                 girl_pic = pygame.image.load("alice_happy.png").convert_alpha()
                 pic_1 = pygame.image.load("dialogue_a_1.png").convert_alpha()
                 pic_1_2 = pygame.image.load("choix_a_1.png").convert_alpha()
-                n_event_1 = (pic_1, 1, 2, 0, pic_1_2)
+                n_event_1 = (pic_1, 0, 1, 2, pic_1_2)
                 pic_2 = pygame.image.load("dialogue_a_2.png").convert_alpha()
                 pic_2_2 = pygame.image.load("choix_a_2.png").convert_alpha()
-                n_event_2 = (pic_2, 1, 0, 2, pic_2_2)
+                n_event_2 = (pic_2, 1, 2, 0, pic_2_2)
                 pic_3 = pygame.image.load("dialogue_a_3.png").convert_alpha()
                 pic_3_2 = pygame.image.load("choix_a_3.png").convert_alpha()
-                n_event_3 = (pic_3, 1, 0, 2, pic_3_2)
+                n_event_3 = (pic_3, 0, 1, 2, pic_3_2)
                 pic_4 = pygame.image.load("dialogue_a_4.png").convert_alpha()
                 pic_4_2 = pygame.image.load("choix_a_4.png").convert_alpha()
-                n_event_4 = (pic_4, 2, 1, 0, pic_4_2)
+                n_event_4 = (pic_4, 1, 0, 0, pic_4_2)
                 pic_5 = pygame.image.load("dialogue_a_5.png").convert_alpha()
                 pic_5_2 = pygame.image.load("choix_a_5.png").convert_alpha()
-                n_event_5 = (pic_5, 1, 2, 0, pic_5_2)
+                n_event_5 = (pic_5, 1, 0, 2, pic_5_2)
                 pic_6 = pygame.image.load("dialogue_a_6.png").convert_alpha()
                 pic_6_2 = pygame.image.load("choix_a_6.png").convert_alpha()
-                n_event_6 = (pic_6, 0, 1, 2, pic_6_2)
+                n_event_6 = (pic_6, 1, 2, 0, pic_6_2)
+                
+                happy_end = pygame.image.load("happy_end_alice.png").convert_alpha()
                 
                 boucle_interaction = 1
                 
@@ -271,7 +294,7 @@ def main():
 
                 pygame.display.flip() #on rafraichit
                
-                while i < 6:
+                while i <= 6:
 
                     #Pour les 6 interactions on appellera la fonction choix et image_lovejauge 
                     if i == 0:
@@ -279,30 +302,36 @@ def main():
                         n_event = n_event_1                
                         pygame.display.flip()
                         i += 1
+                    
                     elif i == 1:
                         n_event = n_event_2
                         i += 1
+                        
                     elif i == 2:
                         n_event = n_event_3
                         i += 1
+                        
                     elif i == 3:
-                        n_event = n_event_4
+                        n_event = n_event_4     
                         i += 1
+       
                     elif i == 4:
-                        n_event = n_event_5
+                        n_event = n_event_5 
                         i += 1
+                        
                     elif i == 5:
-                        n_event = n_event_6
+                        n_event = n_event_6         
                         i += 1
-
+                    
+                    
                     """
                     on stock dans la variable lovejaugeactuelle la valeur de 
                     la love jauge suite au choix établi
                     via la fonction choix qui utilise un tuple n_vent, la 
                     love jauge actuelle (int), l'image de la fille à séduire
                     et la fenetre du jeu
-                     
-                     """
+                    """
+                    
                     lovejaugeactuelle = choix(n_event, lovejaugeactuelle, girl_pic, fenetre)
 
                     """
@@ -312,14 +341,21 @@ def main():
                     de la lovejauge 
                     ainsi que les images de tous les niveaux de lovejauge possible
                     """
+                    
                     lovepic = image_lovejauge(lovejaugeactuelle, lovejauge_0, lovejauge_25, lovejauge_50, lovejauge_75, lovejauge_100)
                     fenetre.blit(lovepic, (0,0)) #on ajoute bien sur l'image de la lovejaugeactuelle à la fenêtre
                     pygame.display.flip() #on rafraichit
+                
+                    if i == 6: #on arrive à la phase finale
                     
+                        findujeu = final(lovejaugeactuelle, happy_end, bad_end)
+                        fenetre.blit(findujeu, (0,0))
+                        pygame.display.flip()
                         
-    #pygame.display.flip()
-    pygame.quit()
-    quit()
-
+                        if event.type == pygame.QUIT:  #Si un de ces événements est de type QUIT
+                            pygame.quit()        #on désinitialise tous les modules de Pygame
+                            quit()    
+                        else:
+                            continue
+                    
 main()
-
