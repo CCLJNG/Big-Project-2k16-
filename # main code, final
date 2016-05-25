@@ -382,7 +382,6 @@ def main():
                             fenetre.blit(findujeu, (0,0))
                         
 
-                        pygame.display.flip()
 
                     
 main()
