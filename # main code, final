@@ -7,28 +7,30 @@ Created on Sat May 21 16:39:09 2016
 import pygame #Importation de notre module principal
 
 
-def final(lovejaugeactuelle, happy_end, bad_end, son_win, son_loose, son_musique_win, son_musique_loose):
+
+def final(lovejaugeactuelle, bad_end, son_win, son_loose, son_musique_win, son_musique_loose, happy_end_mov):
     """
-    fonction renvoyant une image
+   
     si la love jauge est pleine alors le player a gagné
     sinon, il a perdu
     """
     if lovejaugeactuelle == 100:
         son_win.play() #son TADAA de victoire
         son_musique_win.play() #musique jap pour la victoire
-        ending = happy_end
+        ending = happy_end_mov.play() # on active la vidéo de l'ending si on a gagné
+
+                
     else:
         son_loose.play() #son de défaite
         son_musique_loose.play() #musique de défaite
-        ending = bad_end
-        
+        ending = bad_end 
     return ending
         
+
     
     
     
-    
-def fille(choix_fille, girlwtf):
+def fille(choix_fille, girlchoisie):
     """"
     fonction qui va renvoyer une chaîne de caractère correspondant à la fille
     qu'on voudra séduire
@@ -175,7 +177,7 @@ def main():
     #ouverture de la fenêtre Pygame
     fenetre = pygame.display.set_mode((640, 480))
     
-    #chargement des images du fond, des niveaux de love jauge, d'une mauvaise fin et des sons
+    #chargement des images du fond, des niveaux de love jauge, d'une mauvaise fin, des animations de fin et des sons
     fond = pygame.image.load("fond_classe.png").convert()
     
     lovejauge_0 = pygame.image.load("lovejauge_0.png").convert_alpha()
@@ -196,9 +198,7 @@ def main():
     son_musique_jeu = pygame.mixer.Sound("musique_jeu.wav")
     son_musique_win = pygame.mixer.Sound("musique_win.wav")
     son_musique_loose = pygame.mixer.Sound("musique_loose.wav")
-    
-    #son_m_1 = pygame.mixer.Sound("m_1.wav")    
-    
+         
     son_musique_jeu.play() #on lance une musique de fond
     #collage de l'image choix_fille à la position (0,0) sur la fenetre
     fenetre.blit(choix_fille, (0,0))
@@ -256,8 +256,7 @@ def main():
                 n_event_6 = (pic_6, 0, 1, 2, pic_6_2)
 
                 
-                
-                happy_end = pygame.image.load("happy_end_clover.png").convert_alpha()
+                happy_end_mov = pygame.movie.Movie("clover_anim.mpg")
                 
                 boucle_interaction = 1
                 
@@ -285,7 +284,7 @@ def main():
                 pic_6_2 = pygame.image.load("choix_m_6.png").convert_alpha()
                 n_event_6 = (pic_6, 0, 1, 2, pic_6_2)
                 
-                happy_end = pygame.image.load("happy_end_maya.png").convert_alpha()
+                happy_end_mov = pygame.movie.Movie("maya_anim.mpg")
                 
                 boucle_interaction = 1
                 
@@ -313,7 +312,7 @@ def main():
                 pic_6_2 = pygame.image.load("choix_a_6.png").convert_alpha()
                 n_event_6 = (pic_6, 1, 2, 0, pic_6_2)
                 
-                happy_end = pygame.image.load("happy_end_alice.png").convert_alpha()
+                happy_end_mov = pygame.movie.Movie("alice_anim.mpg")
                 
                 boucle_interaction = 1
                 
@@ -377,14 +376,13 @@ def main():
                 
                     if i == 6: #on arrive à la phase finale
                         son_musique_jeu.stop()                        
-                        findujeu = final(lovejaugeactuelle, happy_end, bad_end, son_win, son_loose, son_musique_win, son_musique_loose)
-                        fenetre.blit(findujeu, (0,0))
-                        pygame.display.flip()
+                        findujeu = final(lovejaugeactuelle, bad_end, son_win, son_loose, son_musique_win, son_musique_loose, happy_end_mov)
+
+                        if findujeu == bad_end:
+                            fenetre.blit(findujeu, (0,0))
                         
-                        if event.type == pygame.QUIT:  #Si un de ces événements est de type QUIT
-                            pygame.quit()        #on désinitialise tous les modules de Pygame
-                            quit()    
-                        else:
-                            continue
+
+                        pygame.display.flip()
+
                     
 main()
