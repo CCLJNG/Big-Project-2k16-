@@ -381,7 +381,7 @@ def main():
                         if findujeu == bad_end:
                             fenetre.blit(findujeu, (0,0))
                         
-
+                    fenetre.display.flip()
 
                     
 main()
