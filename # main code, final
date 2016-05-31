@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sat May 21 16:39:09 2016
+Created on Wed May 25 20:55:01 2016
 
 @author: user
 """
+
 import pygame #Importation de notre module principal
 
 
@@ -381,7 +382,12 @@ def main():
                         if findujeu == bad_end:
                             fenetre.blit(findujeu, (0,0))
                         
-                    fenetre.display.flip()
+
+                        pygame.display.flip()
+                        
+                        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and 0 < event.pos[1] < 640 and 0 < event.pos[0] < 480:
+                            pygame.quit()
+                            quit()
 
                     
 main()
